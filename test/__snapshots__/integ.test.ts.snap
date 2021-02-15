@@ -1,0 +1,2500 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`integ snapshot validation 1`] = `
+Object {
+  "Parameters": Object {
+    "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745ArtifactHashA8D91C76": Object {
+      "Description": "Artifact hash for asset \\"4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745\\"",
+      "Type": "String",
+    },
+    "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3BucketBA4B873A": Object {
+      "Description": "S3 bucket for asset \\"4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745\\"",
+      "Type": "String",
+    },
+    "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635": Object {
+      "Description": "S3 key for asset version \\"4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745\\"",
+      "Type": "String",
+    },
+    "AssetParameters67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24ArtifactHashBA91B77F": Object {
+      "Description": "Artifact hash for asset \\"67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24\\"",
+      "Type": "String",
+    },
+    "AssetParameters67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24S3Bucket4D46ABB5": Object {
+      "Description": "S3 bucket for asset \\"67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24\\"",
+      "Type": "String",
+    },
+    "AssetParameters67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24S3VersionKeyB0F28861": Object {
+      "Description": "S3 key for asset version \\"67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24\\"",
+      "Type": "String",
+    },
+    "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383ArtifactHashC6D64B8B": Object {
+      "Description": "Artifact hash for asset \\"b157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383\\"",
+      "Type": "String",
+    },
+    "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3Bucket45E2C6F9": Object {
+      "Description": "S3 bucket for asset \\"b157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383\\"",
+      "Type": "String",
+    },
+    "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E": Object {
+      "Description": "S3 key for asset version \\"b157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383\\"",
+      "Type": "String",
+    },
+  },
+  "Resources": Object {
+    "CancelRsTask9327D41F": Object {
+      "DependsOn": Array [
+        "CancelRsTaskRoleDefaultPolicy0700E688",
+        "CancelRsTaskRoleACDF92EA",
+      ],
+      "Properties": Object {
+        "DefinitionString": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"StartAt\\":\\"provideUdfSlowExecution\\",\\"States\\":{\\"provideUdfSlowExecution\\":{\\"Next\\":\\"startSlowQuery\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"cancelingFailed\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"\\\\n      create or replace function public.f_slow(str_in varchar(50), int_in int)\\\\n      RETURNS varchar(50)\\\\n      stable AS $$\\\\n        import time\\\\n        time.sleep(int_in)\\\\n        return str_in\\\\n      $$ LANGUAGE plpythonu;\\\\n  \\"}}},\\"startSlowQuery\\":{\\"Next\\":\\"cancelingFailed\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"cancelSlowQuery\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"cancelingFailed\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":10,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 600)\\"}}},\\"cancelingFailed\\":{\\"Type\\":\\"Fail\\"},\\"cancelSlowQuery\\":{\\"Next\\":\\"describeCanceledSlowQuery\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"cancelingFailed\\"}],\\"Type\\":\\"Task\\",\\"ResultPath\\":\\"$.executionCancelDetails\\",\\"Resource\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Parameters\\":{\\"statementId\\":\\"LATEST\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"action\\":\\"cancelStatement\\"}},\\"describeCanceledSlowQuery\\":{\\"Next\\":\\"verifyCancelledQuery\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"cancelingFailed\\"}],\\"Type\\":\\"Task\\",\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Parameters\\":{\\"statementId\\":\\"LATEST\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"action\\":\\"describeStatement\\"}},\\"verifyCancelledQuery\\":{\\"Type\\":\\"Choice\\",\\"Choices\\":[{\\"Variable\\":\\"$.executionCancelDetails.Status\\",\\"BooleanEquals\\":false,\\"Next\\":\\"cancelingFailed\\"},{\\"Variable\\":\\"$.executionDetails.Status\\",\\"StringEquals\\":\\"STARTED\\",\\"Next\\":\\"describeCanceledSlowQuery\\"},{\\"Not\\":{\\"Variable\\":\\"$.executionDetails.Status\\",\\"StringEquals\\":\\"ABORTED\\"},\\"Next\\":\\"cancelingFailed\\"}],\\"Default\\":\\"cancelingSucceeded\\"},\\"cancelingSucceeded\\":{\\"Type\\":\\"Succeed\\"}}}",
+            ],
+          ],
+        },
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "CancelRsTaskRoleACDF92EA",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+    },
+    "CancelRsTaskRoleACDF92EA": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "states.",
+                      Object {
+                        "Ref": "AWS::Region",
+                      },
+                      ".amazonaws.com",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CancelRsTaskRoleDefaultPolicy0700E688": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CancelRsTaskRoleDefaultPolicy0700E688",
+        "Roles": Array [
+          Object {
+            "Ref": "CancelRsTaskRoleACDF92EA",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ExampleStateMachineRSIntegration9DD38C85": Object {
+      "DependsOn": Array [
+        "ExampleStateMachineRSIntegrationRoleDefaultPolicy75AF963D",
+        "ExampleStateMachineRSIntegrationRole94140D67",
+      ],
+      "Properties": Object {
+        "DefinitionString": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"StartAt\\":\\"StartRedshiftStatementAndWaitForCallback\\",\\"States\\":{\\"StartRedshiftStatementAndWaitForCallback\\":{\\"Next\\":\\"StartInvalidRedshiftStatementAndWaitForCallback\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"Failure\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select getdate()\\"}}},\\"StartInvalidRedshiftStatementAndWaitForCallback\\":{\\"Next\\":\\"Failure\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"FAILED\\"],\\"Next\\":\\"Succeed\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select get_date()\\"}}},\\"Failure\\":{\\"Type\\":\\"Fail\\"},\\"Succeed\\":{\\"Type\\":\\"Succeed\\"}}}",
+            ],
+          ],
+        },
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ExampleStateMachineRSIntegrationRole94140D67",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+    },
+    "ExampleStateMachineRSIntegrationRole94140D67": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "states.",
+                      Object {
+                        "Ref": "AWS::Region",
+                      },
+                      ".amazonaws.com",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ExampleStateMachineRSIntegrationRoleDefaultPolicy75AF963D": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ExampleStateMachineRSIntegrationRoleDefaultPolicy75AF963D",
+        "Roles": Array [
+          Object {
+            "Ref": "ExampleStateMachineRSIntegrationRole94140D67",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": Object {
+      "DependsOn": Array [
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24S3Bucket4D46ABB5",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24S3VersionKeyB0F28861",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24S3VersionKeyB0F28861",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs10.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "logs:PutRetentionPolicy",
+                "logs:DeleteRetentionPolicy",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "Roles": Array [
+          Object {
+            "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ParallelExecutionsB43CD9EF": Object {
+      "DependsOn": Array [
+        "ParallelExecutionsRoleDefaultPolicyD16636DF",
+        "ParallelExecutionsRoleC2230B34",
+      ],
+      "Properties": Object {
+        "DefinitionString": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"StartAt\\":\\"parallelExecutions\\",\\"States\\":{\\"parallelExecutions\\":{\\"Type\\":\\"Parallel\\",\\"ResultPath\\":\\"$.results\\",\\"End\\":true,\\"Branches\\":[{\\"StartAt\\":\\"startSlowQuery0\\",\\"States\\":{\\"startSlowQuery0\\":{\\"Next\\":\\"successParallel0\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning0\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail0\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail0\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel0\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning0\\":{\\"Type\\":\\"Succeed\\"},\\"testFail0\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery1\\",\\"States\\":{\\"startSlowQuery1\\":{\\"Next\\":\\"successParallel1\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning1\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail1\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail1\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel1\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning1\\":{\\"Type\\":\\"Succeed\\"},\\"testFail1\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery2\\",\\"States\\":{\\"startSlowQuery2\\":{\\"Next\\":\\"successParallel2\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning2\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail2\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail2\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel2\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning2\\":{\\"Type\\":\\"Succeed\\"},\\"testFail2\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery3\\",\\"States\\":{\\"startSlowQuery3\\":{\\"Next\\":\\"successParallel3\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning3\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail3\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail3\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel3\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning3\\":{\\"Type\\":\\"Succeed\\"},\\"testFail3\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery4\\",\\"States\\":{\\"startSlowQuery4\\":{\\"Next\\":\\"successParallel4\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning4\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail4\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail4\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel4\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning4\\":{\\"Type\\":\\"Succeed\\"},\\"testFail4\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery5\\",\\"States\\":{\\"startSlowQuery5\\":{\\"Next\\":\\"successParallel5\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning5\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail5\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail5\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel5\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning5\\":{\\"Type\\":\\"Succeed\\"},\\"testFail5\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery6\\",\\"States\\":{\\"startSlowQuery6\\":{\\"Next\\":\\"successParallel6\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning6\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail6\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail6\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel6\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning6\\":{\\"Type\\":\\"Succeed\\"},\\"testFail6\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery7\\",\\"States\\":{\\"startSlowQuery7\\":{\\"Next\\":\\"successParallel7\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning7\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail7\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail7\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel7\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning7\\":{\\"Type\\":\\"Succeed\\"},\\"testFail7\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery8\\",\\"States\\":{\\"startSlowQuery8\\":{\\"Next\\":\\"successParallel8\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning8\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail8\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail8\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel8\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning8\\":{\\"Type\\":\\"Succeed\\"},\\"testFail8\\":{\\"Type\\":\\"Fail\\"}}},{\\"StartAt\\":\\"startSlowQuery9\\",\\"States\\":{\\"startSlowQuery9\\":{\\"Next\\":\\"successParallel9\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"ConcurrentExecution\\"],\\"Next\\":\\"successAlreadyRunning9\\"},{\\"ErrorEquals\\":[\\"States.Timeout\\"],\\"Next\\":\\"testFail9\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFail9\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 59)\\",\\"action\\":\\"executeSingletonStatement\\"}}},\\"successParallel9\\":{\\"Type\\":\\"Succeed\\"},\\"successAlreadyRunning9\\":{\\"Type\\":\\"Succeed\\"},\\"testFail9\\":{\\"Type\\":\\"Fail\\"}}}]}}}",
+            ],
+          ],
+        },
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "ParallelExecutionsRoleC2230B34",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+    },
+    "ParallelExecutionsRoleC2230B34": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "states.",
+                      Object {
+                        "Ref": "AWS::Region",
+                      },
+                      ".amazonaws.com",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ParallelExecutionsRoleDefaultPolicyD16636DF": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ParallelExecutionsRoleDefaultPolicyD16636DF",
+        "Roles": Array [
+          Object {
+            "Ref": "ParallelExecutionsRoleC2230B34",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PollingRsTaskDD092053": Object {
+      "DependsOn": Array [
+        "PollingRsTaskRoleDefaultPolicyF4E9B1F8",
+        "PollingRsTaskRole280829FE",
+      ],
+      "Properties": Object {
+        "DefinitionString": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"StartAt\\":\\"executeBeforePolling\\",\\"States\\":{\\"executeBeforePolling\\":{\\"Next\\":\\"WaitBetweenPolls\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"StatementFailed_\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Parameters\\":{\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 60)\\"}},\\"WaitBetweenPolls\\":{\\"Type\\":\\"Wait\\",\\"Seconds\\":10,\\"Next\\":\\"checkExecutionStateRSTask\\"},\\"checkExecutionStateRSTask\\":{\\"Next\\":\\"choiceExecutionResult\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Parameters\\":{\\"statementId.$\\":\\"$.executionDetails.Id\\",\\"action\\":\\"describeStatement\\"}},\\"choiceExecutionResult\\":{\\"Type\\":\\"Choice\\",\\"Choices\\":[{\\"Variable\\":\\"$.executionDetails.Status\\",\\"StringEquals\\":\\"FINISHED\\",\\"Next\\":\\"StatementSucceeded_\\"},{\\"Variable\\":\\"$.executionDetails.Status\\",\\"StringEquals\\":\\"ABORTED\\",\\"Next\\":\\"StatementFailed_\\"},{\\"Variable\\":\\"$.executionDetails.Status\\",\\"StringEquals\\":\\"FAILED\\",\\"Next\\":\\"StatementFailed_\\"}],\\"Default\\":\\"WaitBetweenPolls\\"},\\"StatementSucceeded_\\":{\\"Type\\":\\"Succeed\\"},\\"StatementFailed_\\":{\\"Type\\":\\"Fail\\"}}}",
+            ],
+          ],
+        },
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "PollingRsTaskRole280829FE",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+    },
+    "PollingRsTaskRole280829FE": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "states.",
+                      Object {
+                        "Ref": "AWS::Region",
+                      },
+                      ".amazonaws.com",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PollingRsTaskRoleDefaultPolicyF4E9B1F8": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PollingRsTaskRoleDefaultPolicyF4E9B1F8",
+        "Roles": Array [
+          Object {
+            "Ref": "PollingRsTaskRole280829FE",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RSTaskQueryFinishedEncryptionKey98B9880E": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "EnableKeyRotation": true,
+        "KeyPolicy": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "kms:Create*",
+                "kms:Describe*",
+                "kms:Enable*",
+                "kms:List*",
+                "kms:Put*",
+                "kms:Update*",
+                "kms:Revoke*",
+                "kms:Disable*",
+                "kms:Get*",
+                "kms:Delete*",
+                "kms:ScheduleKeyDeletion",
+                "kms:CancelKeyDeletion",
+                "kms:GenerateDataKey",
+                "kms:TagResource",
+                "kms:UntagResource",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":root",
+                    ],
+                  ],
+                },
+              },
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "kms:Decrypt",
+                "kms:Encrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "events.amazonaws.com",
+              },
+              "Resource": "*",
+            },
+            Object {
+              "Action": "kms:Decrypt",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::GetAtt": Array [
+                    "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::KMS::Key",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RSTaskQueryFinishedEventsRuleBD0A1EBD": Object {
+      "Properties": Object {
+        "Description": "Monitor queries that have been issued by Redshift data API and that completed",
+        "EventPattern": Object {
+          "detail-type": Array [
+            "Redshift Data Statement Status Change",
+          ],
+          "source": Array [
+            "aws.redshift-data",
+          ],
+        },
+        "State": "ENABLED",
+        "Targets": Array [
+          Object {
+            "Arn": Object {
+              "Fn::GetAtt": Array [
+                "RSTaskQueryFinishedqueue01F5A7DD",
+                "Arn",
+              ],
+            },
+            "Id": Object {
+              "Fn::GetAtt": Array [
+                "RSTaskQueryFinishedqueue01F5A7DD",
+                "QueueName",
+              ],
+            },
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "RSTaskQueryFinisheddeadLetterQueueA177B510": Object {
+      "Properties": Object {
+        "KmsMasterKeyId": "alias/aws/sqs",
+      },
+      "Type": "AWS::SQS::Queue",
+    },
+    "RSTaskQueryFinisheddeadLetterQueuePolicy15B00B1A": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sqs:DeleteMessage",
+                "sqs:ReceiveMessage",
+                "sqs:SendMessage",
+                "sqs:GetQueueAttributes",
+                "sqs:RemovePermission",
+                "sqs:AddPermission",
+                "sqs:SetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":root",
+                    ],
+                  ],
+                },
+              },
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskQueryFinisheddeadLetterQueueA177B510",
+                  "Arn",
+                ],
+              },
+              "Sid": "QueueOwnerOnlyAccess",
+            },
+            Object {
+              "Action": "SQS:*",
+              "Condition": Object {
+                "Bool": Object {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": "*",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskQueryFinisheddeadLetterQueueA177B510",
+                  "Arn",
+                ],
+              },
+              "Sid": "HttpsOnly",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Queues": Array [
+          Object {
+            "Ref": "RSTaskQueryFinisheddeadLetterQueueA177B510",
+          },
+        ],
+      },
+      "Type": "AWS::SQS::QueuePolicy",
+    },
+    "RSTaskQueryFinishedqueue01F5A7DD": Object {
+      "Properties": Object {
+        "KmsMasterKeyId": Object {
+          "Fn::GetAtt": Array [
+            "RSTaskQueryFinishedEncryptionKey98B9880E",
+            "Arn",
+          ],
+        },
+        "RedrivePolicy": Object {
+          "deadLetterTargetArn": Object {
+            "Fn::GetAtt": Array [
+              "RSTaskQueryFinisheddeadLetterQueueA177B510",
+              "Arn",
+            ],
+          },
+          "maxReceiveCount": 15,
+        },
+      },
+      "Type": "AWS::SQS::Queue",
+    },
+    "RSTaskQueryFinishedqueuePolicy2FCA4CD4": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sqs:DeleteMessage",
+                "sqs:ReceiveMessage",
+                "sqs:SendMessage",
+                "sqs:GetQueueAttributes",
+                "sqs:RemovePermission",
+                "sqs:AddPermission",
+                "sqs:SetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":root",
+                    ],
+                  ],
+                },
+              },
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskQueryFinishedqueue01F5A7DD",
+                  "Arn",
+                ],
+              },
+              "Sid": "QueueOwnerOnlyAccess",
+            },
+            Object {
+              "Action": "SQS:*",
+              "Condition": Object {
+                "Bool": Object {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": "*",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskQueryFinishedqueue01F5A7DD",
+                  "Arn",
+                ],
+              },
+              "Sid": "HttpsOnly",
+            },
+            Object {
+              "Action": Array [
+                "sqs:SendMessage",
+                "sqs:GetQueueAttributes",
+                "sqs:GetQueueUrl",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "events.amazonaws.com",
+              },
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskQueryFinishedqueue01F5A7DD",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Queues": Array [
+          Object {
+            "Ref": "RSTaskQueryFinishedqueue01F5A7DD",
+          },
+        ],
+      },
+      "Type": "AWS::SQS::QueuePolicy",
+    },
+    "RSTaskRSInvokerDynamoTableC8B3355B": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "id",
+            "AttributeType": "S",
+          },
+          Object {
+            "AttributeName": "invocationId",
+            "AttributeType": "S",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+          Object {
+            "AttributeName": "invocationId",
+            "KeyType": "RANGE",
+          },
+        ],
+        "PointInTimeRecoverySpecification": Object {
+          "PointInTimeRecoveryEnabled": true,
+        },
+        "SSESpecification": Object {
+          "SSEEnabled": true,
+        },
+        "TimeToLiveSpecification": Object {
+          "AttributeName": "TTL",
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "RSTaskRSInvokerLambdaFunction76AA46C6": Object {
+      "DependsOn": Array [
+        "RSTaskRSInvokerLambdaFunctionServiceRoleDefaultPolicy0A64DA32",
+        "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114",
+      ],
+      "Metadata": Object {
+        "cfn_nag": Object {
+          "rules_to_suppress": Array [
+            Object {
+              "id": "W58",
+              "reason": "Lambda functions has the required permission to write CloudWatch Logs. It uses custom policy instead of arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole with more tighter permissions.",
+            },
+          ],
+        },
+      },
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3Bucket45E2C6F9",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "CLUSTER_IDENTIFIER": Object {
+              "Ref": "rsCluster21EF444E",
+            },
+            "DATABASE": "dev",
+            "DB_USER": "admin",
+            "DDB_TABLE_NAME": Object {
+              "Ref": "RSTaskRSInvokerDynamoTableC8B3355B",
+            },
+            "LOG_LEVEL": "DEBUG",
+            "TTL": "1",
+          },
+        },
+        "Handler": "index.handler",
+        "Layers": Array [
+          Object {
+            "Ref": "RSTaskSharedLayerB816F241",
+          },
+        ],
+        "ReservedConcurrentExecutions": 1,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.8",
+        "Timeout": 29,
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RSTaskRSInvokerLambdaFunctionLogRetention49E9F05D": Object {
+      "Properties": Object {
+        "LogGroupName": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "/aws/lambda/",
+              Object {
+                "Ref": "RSTaskRSInvokerLambdaFunction76AA46C6",
+              },
+            ],
+          ],
+        },
+        "RetentionInDays": 365,
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::LogRetention",
+    },
+    "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":logs:",
+                        Object {
+                          "Ref": "AWS::Region",
+                        },
+                        ":",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":log-group:/aws/lambda/*",
+                      ],
+                    ],
+                  },
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "LambdaFunctionServiceRolePolicy",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "RSTaskRSInvokerLambdaFunctionServiceRoleDefaultPolicy0A64DA32": Object {
+      "Metadata": Object {
+        "cfn_nag": Object {
+          "rules_to_suppress": Array [
+            Object {
+              "id": "W12",
+              "reason": "Lambda needs the following minimum required permissions to send trace data to X-Ray and access ENIs in a VPC.",
+            },
+          ],
+        },
+      },
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "RSTaskRSInvokerDynamoTableC8B3355B",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "redshift-data:ExecuteStatement",
+                "redshift-data:DescribeStatement",
+                "redshift-data:GetStatementResult",
+                "redshift-data:CancelStatement",
+                "redshift-data:ListStatements",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "redshift:GetClusterCredentials",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Sub": Array [
+                    "arn:\${AWS::Partition}:redshift:\${AWS::Region}:\${AWS::AccountId}:dbname:\${ID}/\${DB}",
+                    Object {
+                      "DB": "dev",
+                      "ID": Object {
+                        "Ref": "rsCluster21EF444E",
+                      },
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Sub": Array [
+                    "arn:\${AWS::Partition}:redshift:\${AWS::Region}:\${AWS::AccountId}:dbuser:\${ID}/\${DB_USER}",
+                    Object {
+                      "DB_USER": "admin",
+                      "ID": Object {
+                        "Ref": "rsCluster21EF444E",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskQueryFinishedqueue01F5A7DD",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "kms:Decrypt",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskQueryFinishedEncryptionKey98B9880E",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "states:SendTaskSuccess",
+                "states:SendTaskFailure",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "RSTaskRSInvokerLambdaFunctionServiceRoleDefaultPolicy0A64DA32",
+        "Roles": Array [
+          Object {
+            "Ref": "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RSTaskRSInvokerLambdaFunctionSqsEventSourceintegteststackRSTaskQueryFinishedqueue1C6FF67E10D05F1B": Object {
+      "Properties": Object {
+        "EventSourceArn": Object {
+          "Fn::GetAtt": Array [
+            "RSTaskQueryFinishedqueue01F5A7DD",
+            "Arn",
+          ],
+        },
+        "FunctionName": Object {
+          "Ref": "RSTaskRSInvokerLambdaFunction76AA46C6",
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
+    },
+    "RSTaskSharedLayerB816F241": Object {
+      "Properties": Object {
+        "CompatibleRuntimes": Array [
+          "python3.8",
+        ],
+        "Content": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3BucketBA4B873A",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "RSTaskUser2RSInvokerLambdaFunction938C96BE": Object {
+      "DependsOn": Array [
+        "RSTaskUser2RSInvokerLambdaFunctionServiceRoleDefaultPolicyE1A068BC",
+        "RSTaskUser2RSInvokerLambdaFunctionServiceRole598B3E0A",
+      ],
+      "Metadata": Object {
+        "cfn_nag": Object {
+          "rules_to_suppress": Array [
+            Object {
+              "id": "W58",
+              "reason": "Lambda functions has the required permission to write CloudWatch Logs. It uses custom policy instead of arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole with more tighter permissions.",
+            },
+          ],
+        },
+      },
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3Bucket45E2C6F9",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "CLUSTER_IDENTIFIER": Object {
+              "Ref": "rsCluster21EF444E",
+            },
+            "DATABASE": "dev",
+            "DB_USER": "user2",
+            "DDB_TABLE_NAME": Object {
+              "Ref": "RSTaskRSInvokerDynamoTableC8B3355B",
+            },
+            "LOG_LEVEL": "INFO",
+            "TTL": "1",
+          },
+        },
+        "Handler": "index.handler",
+        "Layers": Array [
+          Object {
+            "Ref": "RSTaskUser2SharedLayerC95C08BA",
+          },
+        ],
+        "ReservedConcurrentExecutions": 1,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "RSTaskUser2RSInvokerLambdaFunctionServiceRole598B3E0A",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.8",
+        "Timeout": 29,
+        "TracingConfig": Object {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RSTaskUser2RSInvokerLambdaFunctionLogRetentionD6324221": Object {
+      "Properties": Object {
+        "LogGroupName": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "/aws/lambda/",
+              Object {
+                "Ref": "RSTaskUser2RSInvokerLambdaFunction938C96BE",
+              },
+            ],
+          ],
+        },
+        "RetentionInDays": 365,
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::LogRetention",
+    },
+    "RSTaskUser2RSInvokerLambdaFunctionServiceRole598B3E0A": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":logs:",
+                        Object {
+                          "Ref": "AWS::Region",
+                        },
+                        ":",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":log-group:/aws/lambda/*",
+                      ],
+                    ],
+                  },
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "LambdaFunctionServiceRolePolicy",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "RSTaskUser2RSInvokerLambdaFunctionServiceRoleDefaultPolicyE1A068BC": Object {
+      "Metadata": Object {
+        "cfn_nag": Object {
+          "rules_to_suppress": Array [
+            Object {
+              "id": "W12",
+              "reason": "Lambda needs the following minimum required permissions to send trace data to X-Ray and access ENIs in a VPC.",
+            },
+          ],
+        },
+      },
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "RSTaskRSInvokerDynamoTableC8B3355B",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "redshift-data:ExecuteStatement",
+                "redshift-data:DescribeStatement",
+                "redshift-data:GetStatementResult",
+                "redshift-data:CancelStatement",
+                "redshift-data:ListStatements",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "redshift:GetClusterCredentials",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Sub": Array [
+                    "arn:\${AWS::Partition}:redshift:\${AWS::Region}:\${AWS::AccountId}:dbname:\${ID}/\${DB}",
+                    Object {
+                      "DB": "dev",
+                      "ID": Object {
+                        "Ref": "rsCluster21EF444E",
+                      },
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Sub": Array [
+                    "arn:\${AWS::Partition}:redshift:\${AWS::Region}:\${AWS::AccountId}:dbuser:\${ID}/\${DB_USER}",
+                    Object {
+                      "DB_USER": "user2",
+                      "ID": Object {
+                        "Ref": "rsCluster21EF444E",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "RSTaskUser2RSInvokerLambdaFunctionServiceRoleDefaultPolicyE1A068BC",
+        "Roles": Array [
+          Object {
+            "Ref": "RSTaskUser2RSInvokerLambdaFunctionServiceRole598B3E0A",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RSTaskUser2SharedLayerC95C08BA": Object {
+      "Properties": Object {
+        "CompatibleRuntimes": Array [
+          "python3.8",
+        ],
+        "Content": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3BucketBA4B873A",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "SimpleFailureRsTaskProcedureCallbackIntegrationC1240C5C": Object {
+      "DependsOn": Array [
+        "SimpleFailureRsTaskProcedureCallbackIntegrationRoleDefaultPolicy485A3045",
+        "SimpleFailureRsTaskProcedureCallbackIntegrationRole9D93E2DF",
+      ],
+      "Properties": Object {
+        "DefinitionString": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"StartAt\\":\\"SimpleFailureRsTaskProcedure\\",\\"States\\":{\\"SimpleFailureRsTaskProcedure\\":{\\"Next\\":\\"testFailed\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"FAILED\\"],\\"Next\\":\\"simpleFailureDescribeTaskProcedure\\"},{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"testFailed\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskUser2RSInvokerLambdaFunction938C96BE",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select get_date()\\"}}},\\"testFailed\\":{\\"Type\\":\\"Fail\\"},\\"simpleFailureDescribeTaskProcedure\\":{\\"Next\\":\\"testSucceeded\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"Resource\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskUser2RSInvokerLambdaFunction938C96BE",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Parameters\\":{\\"statementId\\":\\"LATEST\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"action\\":\\"describeStatement\\"}},\\"testSucceeded\\":{\\"Type\\":\\"Succeed\\"}}}",
+            ],
+          ],
+        },
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "SimpleFailureRsTaskProcedureCallbackIntegrationRole9D93E2DF",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+    },
+    "SimpleFailureRsTaskProcedureCallbackIntegrationRole9D93E2DF": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "states.",
+                      Object {
+                        "Ref": "AWS::Region",
+                      },
+                      ".amazonaws.com",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "SimpleFailureRsTaskProcedureCallbackIntegrationRoleDefaultPolicy485A3045": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskUser2RSInvokerLambdaFunction938C96BE",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "SimpleFailureRsTaskProcedureCallbackIntegrationRoleDefaultPolicy485A3045",
+        "Roles": Array [
+          Object {
+            "Ref": "SimpleFailureRsTaskProcedureCallbackIntegrationRole9D93E2DF",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "SimpleStateMachineSuccessRSCallbackIntegrationEE5C8D1C": Object {
+      "DependsOn": Array [
+        "SimpleStateMachineSuccessRSCallbackIntegrationRoleDefaultPolicyF1A2D2FC",
+        "SimpleStateMachineSuccessRSCallbackIntegrationRole87962898",
+      ],
+      "Properties": Object {
+        "DefinitionString": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"StartAt\\":\\"SimpleSuccessfullRsTaskProcedure\\",\\"States\\":{\\"SimpleSuccessfullRsTaskProcedure\\":{\\"Next\\":\\"simpleSuccessfullRsTaskGetResult\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"Failure1\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select getdate()\\"}}},\\"simpleSuccessfullRsTaskGetResult\\":{\\"Next\\":\\"Succeed1\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"ResultPath\\":\\"$.executionResult\\",\\"Resource\\":\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+              "\\",\\"Parameters\\":{\\"statementId\\":\\"LATEST\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"action\\":\\"getStatementResult\\"}},\\"Succeed1\\":{\\"Type\\":\\"Succeed\\"},\\"Failure1\\":{\\"Type\\":\\"Fail\\"}}}",
+            ],
+          ],
+        },
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "SimpleStateMachineSuccessRSCallbackIntegrationRole87962898",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+    },
+    "SimpleStateMachineSuccessRSCallbackIntegrationRole87962898": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "states.",
+                      Object {
+                        "Ref": "AWS::Region",
+                      },
+                      ".amazonaws.com",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "SimpleStateMachineSuccessRSCallbackIntegrationRoleDefaultPolicyF1A2D2FC": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "SimpleStateMachineSuccessRSCallbackIntegrationRoleDefaultPolicyF1A2D2FC",
+        "Roles": Array [
+          Object {
+            "Ref": "SimpleStateMachineSuccessRSCallbackIntegrationRole87962898",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "chainedMachinesD9163393": Object {
+      "DependsOn": Array [
+        "chainedMachinesRoleDefaultPolicyF9CCEA4D",
+        "chainedMachinesRole5395E0C3",
+      ],
+      "Properties": Object {
+        "DefinitionString": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"StartAt\\":\\"cancelling\\",\\"States\\":{\\"cancelling\\":{\\"Next\\":\\"polling\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::states:startExecution.sync:2\\",\\"Parameters\\":{\\"Input.$\\":\\"$\\",\\"StateMachineArn\\":\\"",
+              Object {
+                "Ref": "CancelRsTask9327D41F",
+              },
+              "\\"}},\\"polling\\":{\\"Next\\":\\"successAndFail\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::states:startExecution.sync:2\\",\\"Parameters\\":{\\"Input.$\\":\\"$\\",\\"StateMachineArn\\":\\"",
+              Object {
+                "Ref": "PollingRsTaskDD092053",
+              },
+              "\\"}},\\"successAndFail\\":{\\"Next\\":\\"parallelNoConcurrency\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::states:startExecution.sync:2\\",\\"Parameters\\":{\\"Input.$\\":\\"$\\",\\"StateMachineArn\\":\\"",
+              Object {
+                "Ref": "ExampleStateMachineRSIntegration9DD38C85",
+              },
+              "\\"}},\\"parallelNoConcurrency\\":{\\"Next\\":\\"singleSuccess\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::states:startExecution.sync:2\\",\\"Parameters\\":{\\"Input.$\\":\\"$\\",\\"StateMachineArn\\":\\"",
+              Object {
+                "Ref": "ParallelExecutionsB43CD9EF",
+              },
+              "\\"}},\\"singleSuccess\\":{\\"Next\\":\\"singleFailure\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::states:startExecution.sync:2\\",\\"Parameters\\":{\\"Input.$\\":\\"$\\",\\"StateMachineArn\\":\\"",
+              Object {
+                "Ref": "SimpleStateMachineSuccessRSCallbackIntegrationEE5C8D1C",
+              },
+              "\\"}},\\"singleFailure\\":{\\"Next\\":\\"chainedTestSuccess\\",\\"Type\\":\\"Task\\",\\"Resource\\":\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::states:startExecution.sync:2\\",\\"Parameters\\":{\\"Input.$\\":\\"$\\",\\"StateMachineArn\\":\\"",
+              Object {
+                "Ref": "SimpleFailureRsTaskProcedureCallbackIntegrationC1240C5C",
+              },
+              "\\"}},\\"chainedTestSuccess\\":{\\"Type\\":\\"Succeed\\"}}}",
+            ],
+          ],
+        },
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "chainedMachinesRole5395E0C3",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+    },
+    "chainedMachinesRole5395E0C3": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "states.",
+                      Object {
+                        "Ref": "AWS::Region",
+                      },
+                      ".amazonaws.com",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "chainedMachinesRoleDefaultPolicyF9CCEA4D": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "CancelRsTask9327D41F",
+              },
+            },
+            Object {
+              "Action": Array [
+                "states:DescribeExecution",
+                "states:StopExecution",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":execution:",
+                    Object {
+                      "Fn::Select": Array [
+                        6,
+                        Object {
+                          "Fn::Split": Array [
+                            ":",
+                            Object {
+                              "Ref": "CancelRsTask9327D41F",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    "*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "events:PutTargets",
+                "events:PutRule",
+                "events:DescribeRule",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":events:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":rule/StepFunctionsGetEventsForStepFunctionsExecutionRule",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "PollingRsTaskDD092053",
+              },
+            },
+            Object {
+              "Action": Array [
+                "states:DescribeExecution",
+                "states:StopExecution",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":execution:",
+                    Object {
+                      "Fn::Select": Array [
+                        6,
+                        Object {
+                          "Fn::Split": Array [
+                            ":",
+                            Object {
+                              "Ref": "PollingRsTaskDD092053",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    "*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "ExampleStateMachineRSIntegration9DD38C85",
+              },
+            },
+            Object {
+              "Action": Array [
+                "states:DescribeExecution",
+                "states:StopExecution",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":execution:",
+                    Object {
+                      "Fn::Select": Array [
+                        6,
+                        Object {
+                          "Fn::Split": Array [
+                            ":",
+                            Object {
+                              "Ref": "ExampleStateMachineRSIntegration9DD38C85",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    "*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "ParallelExecutionsB43CD9EF",
+              },
+            },
+            Object {
+              "Action": Array [
+                "states:DescribeExecution",
+                "states:StopExecution",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":execution:",
+                    Object {
+                      "Fn::Select": Array [
+                        6,
+                        Object {
+                          "Fn::Split": Array [
+                            ":",
+                            Object {
+                              "Ref": "ParallelExecutionsB43CD9EF",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    "*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "SimpleStateMachineSuccessRSCallbackIntegrationEE5C8D1C",
+              },
+            },
+            Object {
+              "Action": Array [
+                "states:DescribeExecution",
+                "states:StopExecution",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":execution:",
+                    Object {
+                      "Fn::Select": Array [
+                        6,
+                        Object {
+                          "Fn::Split": Array [
+                            ":",
+                            Object {
+                              "Ref": "SimpleStateMachineSuccessRSCallbackIntegrationEE5C8D1C",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    "*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "SimpleFailureRsTaskProcedureCallbackIntegrationC1240C5C",
+              },
+            },
+            Object {
+              "Action": Array [
+                "states:DescribeExecution",
+                "states:StopExecution",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":execution:",
+                    Object {
+                      "Fn::Select": Array [
+                        6,
+                        Object {
+                          "Fn::Split": Array [
+                            ":",
+                            Object {
+                              "Ref": "SimpleFailureRsTaskProcedureCallbackIntegrationC1240C5C",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    "*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "chainedMachinesRoleDefaultPolicyF9CCEA4D",
+        "Roles": Array [
+          Object {
+            "Ref": "chainedMachinesRole5395E0C3",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "rsCluster21EF444E": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "AllowVersionUpgrade": true,
+        "AutomatedSnapshotRetentionPeriod": 1,
+        "ClusterSubnetGroupName": Object {
+          "Ref": "rsClusterSubnetsBE90202C",
+        },
+        "ClusterType": "single-node",
+        "DBName": "dev",
+        "Encrypted": true,
+        "MasterUserPassword": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{{resolve:secretsmanager:",
+              Object {
+                "Ref": "rsClusterSecretB3359155",
+              },
+              ":SecretString:password::}}",
+            ],
+          ],
+        },
+        "MasterUsername": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{{resolve:secretsmanager:",
+              Object {
+                "Ref": "rsClusterSecretB3359155",
+              },
+              ":SecretString:username::}}",
+            ],
+          ],
+        },
+        "NodeType": "dc2.large",
+        "PubliclyAccessible": false,
+        "VpcSecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "rsClusterSecurityGroup7A7F9519",
+              "GroupId",
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::Redshift::Cluster",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "rsClusterSecretAttachmentB6148698": Object {
+      "Properties": Object {
+        "SecretId": Object {
+          "Ref": "rsClusterSecretB3359155",
+        },
+        "TargetId": Object {
+          "Ref": "rsCluster21EF444E",
+        },
+        "TargetType": "AWS::Redshift::Cluster",
+      },
+      "Type": "AWS::SecretsManager::SecretTargetAttachment",
+    },
+    "rsClusterSecretB3359155": Object {
+      "Properties": Object {
+        "GenerateSecretString": Object {
+          "ExcludeCharacters": "\\"@/\\\\ '",
+          "GenerateStringKey": "password",
+          "PasswordLength": 30,
+          "SecretStringTemplate": "{\\"username\\":\\"admin\\"}",
+        },
+      },
+      "Type": "AWS::SecretsManager::Secret",
+    },
+    "rsClusterSecurityGroup7A7F9519": Object {
+      "Properties": Object {
+        "GroupDescription": "Redshift security group",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "vpcA2121C38",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "rsClusterSubnetsBE90202C": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "Description": "Subnets for rsCluster Redshift cluster",
+        "SubnetIds": Array [
+          Object {
+            "Ref": "vpcisolatedSubnet1Subnet06BBE51F",
+          },
+          Object {
+            "Ref": "vpcisolatedSubnet2Subnet51F71E92",
+          },
+        ],
+      },
+      "Type": "AWS::Redshift::ClusterSubnetGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "vpcA2121C38": Object {
+      "Properties": Object {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "integ-test-stack/vpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "vpcisolatedSubnet1RouteTable7903AE22": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "integ-test-stack/vpc/isolatedSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "vpcA2121C38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcisolatedSubnet1RouteTableAssociation66413364": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "vpcisolatedSubnet1RouteTable7903AE22",
+        },
+        "SubnetId": Object {
+          "Ref": "vpcisolatedSubnet1Subnet06BBE51F",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcisolatedSubnet1Subnet06BBE51F": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.0/28",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "isolated",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "integ-test-stack/vpc/isolatedSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "vpcA2121C38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcisolatedSubnet2RouteTableAssociation14DFC38E": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "vpcisolatedSubnet2RouteTableD2247699",
+        },
+        "SubnetId": Object {
+          "Ref": "vpcisolatedSubnet2Subnet51F71E92",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcisolatedSubnet2RouteTableD2247699": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "integ-test-stack/vpc/isolatedSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "vpcA2121C38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcisolatedSubnet2Subnet51F71E92": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.16/28",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "isolated",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "integ-test-stack/vpc/isolatedSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "vpcA2121C38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+  },
+}
+`;
