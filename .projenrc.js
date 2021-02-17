@@ -1,6 +1,6 @@
 const { AwsCdkConstructLibrary } = require('projen');
 
-const AWS_CDK_VERSION = '1.80.0';
+const AWS_CDK_VERSION = '1.87.0';
 const PROJECT_NAME = 'cdk-stepfunctions-redshift';
 const PROJECT_DESCRIPTION = 'A JSII construct lib to build AWS Serverless infrastructure to orchestrate Redshift using AWS stepfunctions.';
 const AUTOMATION_TOKEN = 'PROJEN_GITHUB_TOKEN';
@@ -49,7 +49,7 @@ const project = new AwsCdkConstructLibrary({
   ],
 });
 
-const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'yarn-error.log', '**/.idea'];
+const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'yarn-error.log', '**/.idea', 'package-lock.json'];
 project.npmignore.exclude(...common_exclude, '/codebase');
 project.gitignore.exclude(...common_exclude);
 project.synth();
