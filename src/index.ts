@@ -191,11 +191,11 @@ export class SfnRedshiftTasker extends cdk.Construct {
 
     let lambdaP = path.join(__dirname, '../lambda');
     let pythonP = path.join(lambdaP, 'python');
-    let layerP = path.join(pythonP, 'layer');
-    let sharedP = path.join(layerP, 'rsif_shared');
+    let rsIntegrationFunctionP = path.join(pythonP, 'rs_integration_function');
+    let sharedP = path.join(rsIntegrationFunctionP, 'rsif_shared');
     let ddbP = path.join(sharedP, 'ddb');
     let ddbInitP = path.join(ddbP, '__init__.py');
-    let rsIntegrationFunctionP = path.join(pythonP, 'rs_integration_function');
+
     let rsIntegrationFunctionEnvVarP = path.join(sharedP, 'environment_labels.py');
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const PropertiesReader = require('properties-reader');
@@ -218,14 +218,6 @@ export class SfnRedshiftTasker extends cdk.Construct {
     let DATABASE = getRsProcedureStarterEnvProp('DATABASE');
     let DB_USER = getRsProcedureStarterEnvProp('DB_USER');
 
-    let defaultPythonLayerVersionProps = {
-      compatibleRuntimes: [lambda.Runtime.PYTHON_3_8],
-      entry: layerP,
-    };
-    let sharedLayer = new lambdaPython.PythonLayerVersion(
-      this, 'SharedLayer', { ...defaultPythonLayerVersionProps, ...props.pythonLayerVersionProps },
-    );
-
     let defaultDynamoTableProps = {
       partitionKey: { name: DDB_ID, type: dynamodb.AttributeType.STRING },
       sortKey: { name: DDB_INVOCATION_ID, type: dynamodb.AttributeType.STRING },
@@ -245,7 +237,6 @@ export class SfnRedshiftTasker extends cdk.Construct {
         [DDB_TTL]: '1', //Default time to live is 1 day.
         LOG_LEVEL: props.logLevel || 'INFO',
       },
-      layers: [sharedLayer],
       logRetention: logs.RetentionDays.ONE_YEAR,
       timeout: cdk.Duration.seconds(29),
       reservedConcurrentExecutions: 1, // Limit to 1 concurrent execution to allow safe checking concurrent invocations

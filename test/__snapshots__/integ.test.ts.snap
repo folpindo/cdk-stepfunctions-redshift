@@ -3,18 +3,6 @@
 exports[`integ snapshot validation 1`] = `
 Object {
   "Parameters": Object {
-    "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745ArtifactHashA8D91C76": Object {
-      "Description": "Artifact hash for asset \\"4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745\\"",
-      "Type": "String",
-    },
-    "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3BucketBA4B873A": Object {
-      "Description": "S3 bucket for asset \\"4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745\\"",
-      "Type": "String",
-    },
-    "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635": Object {
-      "Description": "S3 key for asset version \\"4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745\\"",
-      "Type": "String",
-    },
     "AssetParameters67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24ArtifactHashBA91B77F": Object {
       "Description": "Artifact hash for asset \\"67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24\\"",
       "Type": "String",
@@ -27,16 +15,16 @@ Object {
       "Description": "S3 key for asset version \\"67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24\\"",
       "Type": "String",
     },
-    "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383ArtifactHashC6D64B8B": Object {
-      "Description": "Artifact hash for asset \\"b157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383\\"",
+    "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785ArtifactHashBAD62C9D": Object {
+      "Description": "Artifact hash for asset \\"87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785\\"",
       "Type": "String",
     },
-    "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3Bucket45E2C6F9": Object {
-      "Description": "S3 bucket for asset \\"b157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383\\"",
+    "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3BucketB1ABEA4C": Object {
+      "Description": "S3 bucket for asset \\"87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785\\"",
       "Type": "String",
     },
-    "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E": Object {
-      "Description": "S3 key for asset version \\"b157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383\\"",
+    "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE": Object {
+      "Description": "S3 key for asset version \\"87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785\\"",
       "Type": "String",
     },
   },
@@ -304,7 +292,7 @@ Object {
             "Arn",
           ],
         },
-        "Runtime": "nodejs10.x",
+        "Runtime": "nodejs12.x",
       },
       "Type": "AWS::Lambda::Function",
     },
@@ -987,7 +975,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3Bucket45E2C6F9",
+            "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3BucketB1ABEA4C",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1000,7 +988,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E",
+                          "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE",
                         },
                       ],
                     },
@@ -1013,7 +1001,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E",
+                          "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE",
                         },
                       ],
                     },
@@ -1038,11 +1026,6 @@ Object {
           },
         },
         "Handler": "index.handler",
-        "Layers": Array [
-          Object {
-            "Ref": "RSTaskSharedLayerB816F241",
-          },
-        ],
         "ReservedConcurrentExecutions": 1,
         "Role": Object {
           "Fn::GetAtt": Array [
@@ -1166,6 +1149,7 @@ Object {
                 "dynamodb:Query",
                 "dynamodb:GetItem",
                 "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
                 "dynamodb:BatchWriteItem",
                 "dynamodb:PutItem",
                 "dynamodb:UpdateItem",
@@ -1283,52 +1267,6 @@ Object {
       },
       "Type": "AWS::Lambda::EventSourceMapping",
     },
-    "RSTaskSharedLayerB816F241": Object {
-      "Properties": Object {
-        "CompatibleRuntimes": Array [
-          "python3.8",
-        ],
-        "Content": Object {
-          "S3Bucket": Object {
-            "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3BucketBA4B873A",
-          },
-          "S3Key": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                Object {
-                  "Fn::Select": Array [
-                    0,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "Fn::Select": Array [
-                    1,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
-        },
-      },
-      "Type": "AWS::Lambda::LayerVersion",
-    },
     "RSTaskUser2RSInvokerLambdaFunction938C96BE": Object {
       "DependsOn": Array [
         "RSTaskUser2RSInvokerLambdaFunctionServiceRoleDefaultPolicyE1A068BC",
@@ -1347,7 +1285,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3Bucket45E2C6F9",
+            "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3BucketB1ABEA4C",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1360,7 +1298,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E",
+                          "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE",
                         },
                       ],
                     },
@@ -1373,7 +1311,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersb157a7dcef95b2227bc6b074ca64507bb15551659792333e60357b93462f4383S3VersionKey4F93FB1E",
+                          "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE",
                         },
                       ],
                     },
@@ -1398,11 +1336,6 @@ Object {
           },
         },
         "Handler": "index.handler",
-        "Layers": Array [
-          Object {
-            "Ref": "RSTaskUser2SharedLayerC95C08BA",
-          },
-        ],
         "ReservedConcurrentExecutions": 1,
         "Role": Object {
           "Fn::GetAtt": Array [
@@ -1526,6 +1459,7 @@ Object {
                 "dynamodb:Query",
                 "dynamodb:GetItem",
                 "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
                 "dynamodb:BatchWriteItem",
                 "dynamodb:PutItem",
                 "dynamodb:UpdateItem",
@@ -1594,52 +1528,6 @@ Object {
         ],
       },
       "Type": "AWS::IAM::Policy",
-    },
-    "RSTaskUser2SharedLayerC95C08BA": Object {
-      "Properties": Object {
-        "CompatibleRuntimes": Array [
-          "python3.8",
-        ],
-        "Content": Object {
-          "S3Bucket": Object {
-            "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3BucketBA4B873A",
-          },
-          "S3Key": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                Object {
-                  "Fn::Select": Array [
-                    0,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "Fn::Select": Array [
-                    1,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters4bfe424eb865f9511b438149f0e6ba236327dc18487c3bf6127970ebfe662745S3VersionKeyEC796635",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
-        },
-      },
-      "Type": "AWS::Lambda::LayerVersion",
     },
     "SimpleFailureRsTaskProcedureCallbackIntegrationC1240C5C": Object {
       "DependsOn": Array [
