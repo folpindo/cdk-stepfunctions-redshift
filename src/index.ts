@@ -8,7 +8,7 @@ import * as dynamodb from '@aws-cdk/aws-dynamodb';
 import * as iam from '@aws-cdk/aws-iam';
 import * as kms from '@aws-cdk/aws-kms';
 import * as lambda from '@aws-cdk/aws-lambda';
-import * as lambdaPython from '@aws-cdk/aws-lambda-python';
+import { PythonFunction } from '@aws-cdk/aws-lambda-python';
 import * as logs from '@aws-cdk/aws-logs';
 import * as sqs from '@aws-cdk/aws-sqs';
 import * as cdk from '@aws-cdk/core';
@@ -149,12 +149,6 @@ export interface SfnRedshiftTaskerProps {
    *
    * @default - None
    */
-  readonly pythonLayerVersionProps?: lambdaPython.PythonLayerVersionProps;
-  /**
-   * Optional log level to be used for Lambda functions.
-   *
-   * @default - INFO
-   */
   readonly logLevel?: string;
   /**
    * Setup the infrastructure to support the step function callback mechanism. If you never want to trigger Redshift
@@ -226,8 +220,9 @@ export class SfnRedshiftTasker extends cdk.Construct {
     };
 
     let defaultLambdaFunctionProps = {
-      code: new lambda.AssetCode(rsIntegrationFunctionP),
-      handler: 'index.handler',
+      entry: rsIntegrationFunctionP,
+      index: 'index.py',
+      handler: 'handler',
       runtime: lambda.Runtime.PYTHON_3_8,
       environment: {
         // DynamoDB table environment variable gets automatically added by LambdaToDynamoDB
@@ -243,9 +238,9 @@ export class SfnRedshiftTasker extends cdk.Construct {
     };
     const existingTableErr = 'Must pass existing helper table via "existingTableObj" if createCallBackInfra is set to false';
     assert(props.createCallbackInfra || props.createCallbackInfra === undefined || props.existingTableObj !== undefined, existingTableErr);
-    let lambda_ddb = new LambdaToDynamoDB(this, 'RSInvoker', {
-      existingLambdaObj: props.starterExistingLambdaObj,
-      lambdaFunctionProps: { ...defaultLambdaFunctionProps, ...props.starterLambdaFunctionProps },
+    let lambda_func = new PythonFunction(this, 'RSInvoker', { ...defaultLambdaFunctionProps, ...props.starterLambdaFunctionProps });
+    let lambda_ddb = new LambdaToDynamoDB(this, 'RSInvokerDDB', {
+      existingLambdaObj: lambda_func,
       dynamoTableProps: { ...defaultDynamoTableProps, ...props.dynamoTableProps },
       existingTableObj: props.existingTableObj,
       tablePermissions: props.tablePermissions || 'ReadWrite',
@@ -299,7 +294,7 @@ export class SfnRedshiftTasker extends cdk.Construct {
       }
       let completerIntegration = new LambdaToDynamoDB(this, 'Completer', {
         existingLambdaObj: existingCompleterLambdaObj,
-        lambdaFunctionProps: { ...defaultLambdaFunctionProps, ...props.completerLambdaFunctionProps },
+        // lambdaFunctionProps: { ...defaultLambdaFunctionProps, ...props.completerLambdaFunctionProps },
         existingTableObj: this.trackingTable,
       });
 

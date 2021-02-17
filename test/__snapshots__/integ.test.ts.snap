@@ -15,16 +15,16 @@ Object {
       "Description": "S3 key for asset version \\"67b7823b74bc135986aa72f889d6a8da058d0c4a20cbc2dfc6f78995fdd2fc24\\"",
       "Type": "String",
     },
-    "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785ArtifactHashBAD62C9D": Object {
-      "Description": "Artifact hash for asset \\"87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785\\"",
+    "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5ArtifactHashC7423C59": Object {
+      "Description": "Artifact hash for asset \\"b5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5\\"",
       "Type": "String",
     },
-    "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3BucketB1ABEA4C": Object {
-      "Description": "S3 bucket for asset \\"87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785\\"",
+    "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5S3BucketF40D8DE1": Object {
+      "Description": "S3 bucket for asset \\"b5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5\\"",
       "Type": "String",
     },
-    "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE": Object {
-      "Description": "S3 key for asset version \\"87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785\\"",
+    "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5S3VersionKey20110466": Object {
+      "Description": "S3 key for asset version \\"b5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5\\"",
       "Type": "String",
     },
   },
@@ -46,7 +46,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -57,21 +57,21 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
               "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 600)\\"}}},\\"cancelingFailed\\":{\\"Type\\":\\"Fail\\"},\\"cancelSlowQuery\\":{\\"Next\\":\\"describeCanceledSlowQuery\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"cancelingFailed\\"}],\\"Type\\":\\"Task\\",\\"ResultPath\\":\\"$.executionCancelDetails\\",\\"Resource\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
               "\\",\\"Parameters\\":{\\"statementId\\":\\"LATEST\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"action\\":\\"cancelStatement\\"}},\\"describeCanceledSlowQuery\\":{\\"Next\\":\\"verifyCancelledQuery\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"cancelingFailed\\"}],\\"Type\\":\\"Task\\",\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -125,7 +125,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -159,7 +159,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -170,7 +170,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -224,7 +224,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -368,7 +368,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -379,7 +379,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -390,7 +390,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -401,7 +401,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -412,7 +412,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -423,7 +423,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -434,7 +434,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -445,7 +445,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -456,7 +456,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -467,7 +467,7 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -521,7 +521,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -551,14 +551,14 @@ Object {
               "{\\"StartAt\\":\\"executeBeforePolling\\",\\"States\\":{\\"executeBeforePolling\\":{\\"Next\\":\\"WaitBetweenPolls\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Catch\\":[{\\"ErrorEquals\\":[\\"States.ALL\\"],\\"Next\\":\\"StatementFailed_\\"}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
               "\\",\\"Parameters\\":{\\"sqlStatement\\":\\"select public.f_slow(getdate()::varchar(50), 60)\\"}},\\"WaitBetweenPolls\\":{\\"Type\\":\\"Wait\\",\\"Seconds\\":10,\\"Next\\":\\"checkExecutionStateRSTask\\"},\\"checkExecutionStateRSTask\\":{\\"Next\\":\\"choiceExecutionResult\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":300,\\"ResultPath\\":\\"$.executionDetails\\",\\"Resource\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -612,7 +612,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -693,7 +693,7 @@ Object {
               "Principal": Object {
                 "AWS": Object {
                   "Fn::GetAtt": Array [
-                    "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114",
+                    "RSTaskRSInvokerServiceRoleAE4D7DA1",
                     "Arn",
                   ],
                 },
@@ -919,7 +919,78 @@ Object {
       },
       "Type": "AWS::SQS::QueuePolicy",
     },
-    "RSTaskRSInvokerDynamoTableC8B3355B": Object {
+    "RSTaskRSInvoker99B25223": Object {
+      "DependsOn": Array [
+        "RSTaskRSInvokerServiceRoleDefaultPolicy0E9F89FB",
+        "RSTaskRSInvokerServiceRoleAE4D7DA1",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5S3BucketF40D8DE1",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5S3VersionKey20110466",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5S3VersionKey20110466",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "CLUSTER_IDENTIFIER": Object {
+              "Ref": "rsCluster21EF444E",
+            },
+            "DATABASE": "dev",
+            "DB_USER": "admin",
+            "DDB_TABLE_NAME": Object {
+              "Ref": "RSTaskRSInvokerDDBDynamoTable7CC77285",
+            },
+            "LOG_LEVEL": "DEBUG",
+            "TTL": "1",
+          },
+        },
+        "Handler": "index.handler",
+        "ReservedConcurrentExecutions": 1,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "RSTaskRSInvokerServiceRoleAE4D7DA1",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.8",
+        "Timeout": 29,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RSTaskRSInvokerDDBDynamoTable7CC77285": Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
         "AttributeDefinitions": Array [
@@ -957,91 +1028,7 @@ Object {
       "Type": "AWS::DynamoDB::Table",
       "UpdateReplacePolicy": "Delete",
     },
-    "RSTaskRSInvokerLambdaFunction76AA46C6": Object {
-      "DependsOn": Array [
-        "RSTaskRSInvokerLambdaFunctionServiceRoleDefaultPolicy0A64DA32",
-        "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114",
-      ],
-      "Metadata": Object {
-        "cfn_nag": Object {
-          "rules_to_suppress": Array [
-            Object {
-              "id": "W58",
-              "reason": "Lambda functions has the required permission to write CloudWatch Logs. It uses custom policy instead of arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole with more tighter permissions.",
-            },
-          ],
-        },
-      },
-      "Properties": Object {
-        "Code": Object {
-          "S3Bucket": Object {
-            "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3BucketB1ABEA4C",
-          },
-          "S3Key": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                Object {
-                  "Fn::Select": Array [
-                    0,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "Fn::Select": Array [
-                    1,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
-        },
-        "Environment": Object {
-          "Variables": Object {
-            "CLUSTER_IDENTIFIER": Object {
-              "Ref": "rsCluster21EF444E",
-            },
-            "DATABASE": "dev",
-            "DB_USER": "admin",
-            "DDB_TABLE_NAME": Object {
-              "Ref": "RSTaskRSInvokerDynamoTableC8B3355B",
-            },
-            "LOG_LEVEL": "DEBUG",
-            "TTL": "1",
-          },
-        },
-        "Handler": "index.handler",
-        "ReservedConcurrentExecutions": 1,
-        "Role": Object {
-          "Fn::GetAtt": Array [
-            "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114",
-            "Arn",
-          ],
-        },
-        "Runtime": "python3.8",
-        "Timeout": 29,
-        "TracingConfig": Object {
-          "Mode": "Active",
-        },
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "RSTaskRSInvokerLambdaFunctionLogRetention49E9F05D": Object {
+    "RSTaskRSInvokerLogRetentionD0702394": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -1049,7 +1036,7 @@ Object {
             Array [
               "/aws/lambda/",
               Object {
-                "Ref": "RSTaskRSInvokerLambdaFunction76AA46C6",
+                "Ref": "RSTaskRSInvoker99B25223",
               },
             ],
           ],
@@ -1064,7 +1051,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114": Object {
+    "RSTaskRSInvokerServiceRoleAE4D7DA1": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -1078,69 +1065,27 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "Policies": Array [
+        "ManagedPolicyArns": Array [
           Object {
-            "PolicyDocument": Object {
-              "Statement": Array [
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
                 Object {
-                  "Action": Array [
-                    "logs:CreateLogGroup",
-                    "logs:CreateLogStream",
-                    "logs:PutLogEvents",
-                  ],
-                  "Effect": "Allow",
-                  "Resource": Object {
-                    "Fn::Join": Array [
-                      "",
-                      Array [
-                        "arn:",
-                        Object {
-                          "Ref": "AWS::Partition",
-                        },
-                        ":logs:",
-                        Object {
-                          "Ref": "AWS::Region",
-                        },
-                        ":",
-                        Object {
-                          "Ref": "AWS::AccountId",
-                        },
-                        ":log-group:/aws/lambda/*",
-                      ],
-                    ],
-                  },
+                  "Ref": "AWS::Partition",
                 },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
               ],
-              "Version": "2012-10-17",
-            },
-            "PolicyName": "LambdaFunctionServiceRolePolicy",
+            ],
           },
         ],
       },
       "Type": "AWS::IAM::Role",
     },
-    "RSTaskRSInvokerLambdaFunctionServiceRoleDefaultPolicy0A64DA32": Object {
-      "Metadata": Object {
-        "cfn_nag": Object {
-          "rules_to_suppress": Array [
-            Object {
-              "id": "W12",
-              "reason": "Lambda needs the following minimum required permissions to send trace data to X-Ray and access ENIs in a VPC.",
-            },
-          ],
-        },
-      },
+    "RSTaskRSInvokerServiceRoleDefaultPolicy0E9F89FB": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
-            Object {
-              "Action": Array [
-                "xray:PutTraceSegments",
-                "xray:PutTelemetryRecords",
-              ],
-              "Effect": "Allow",
-              "Resource": "*",
-            },
             Object {
               "Action": Array [
                 "dynamodb:BatchGetItem",
@@ -1159,7 +1104,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "RSTaskRSInvokerDynamoTableC8B3355B",
+                    "RSTaskRSInvokerDDBDynamoTable7CC77285",
                     "Arn",
                   ],
                 },
@@ -1244,16 +1189,16 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "RSTaskRSInvokerLambdaFunctionServiceRoleDefaultPolicy0A64DA32",
+        "PolicyName": "RSTaskRSInvokerServiceRoleDefaultPolicy0E9F89FB",
         "Roles": Array [
           Object {
-            "Ref": "RSTaskRSInvokerLambdaFunctionServiceRoleBC2C6114",
+            "Ref": "RSTaskRSInvokerServiceRoleAE4D7DA1",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "RSTaskRSInvokerLambdaFunctionSqsEventSourceintegteststackRSTaskQueryFinishedqueue1C6FF67E10D05F1B": Object {
+    "RSTaskRSInvokerSqsEventSourceintegteststackRSTaskQueryFinishedqueue1C6FF67E03AAEDA0": Object {
       "Properties": Object {
         "EventSourceArn": Object {
           "Fn::GetAtt": Array [
@@ -1262,30 +1207,20 @@ Object {
           ],
         },
         "FunctionName": Object {
-          "Ref": "RSTaskRSInvokerLambdaFunction76AA46C6",
+          "Ref": "RSTaskRSInvoker99B25223",
         },
       },
       "Type": "AWS::Lambda::EventSourceMapping",
     },
-    "RSTaskUser2RSInvokerLambdaFunction938C96BE": Object {
+    "RSTaskUser2RSInvoker2FB5B7CD": Object {
       "DependsOn": Array [
-        "RSTaskUser2RSInvokerLambdaFunctionServiceRoleDefaultPolicyE1A068BC",
-        "RSTaskUser2RSInvokerLambdaFunctionServiceRole598B3E0A",
+        "RSTaskUser2RSInvokerServiceRoleDefaultPolicyFACAC6A3",
+        "RSTaskUser2RSInvokerServiceRole539CF0C8",
       ],
-      "Metadata": Object {
-        "cfn_nag": Object {
-          "rules_to_suppress": Array [
-            Object {
-              "id": "W58",
-              "reason": "Lambda functions has the required permission to write CloudWatch Logs. It uses custom policy instead of arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole with more tighter permissions.",
-            },
-          ],
-        },
-      },
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3BucketB1ABEA4C",
+            "Ref": "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5S3BucketF40D8DE1",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -1298,7 +1233,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE",
+                          "Ref": "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5S3VersionKey20110466",
                         },
                       ],
                     },
@@ -1311,7 +1246,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters87af602ae8c7c92b9f42d47971b2936e0eb290d9018429f954d444231835a785S3VersionKeyE56CB2FE",
+                          "Ref": "AssetParametersb5cd5638d98d8dfdb056438682e54343d92ec455bbad503fdcc3f319e21542f5S3VersionKey20110466",
                         },
                       ],
                     },
@@ -1329,7 +1264,7 @@ Object {
             "DATABASE": "dev",
             "DB_USER": "user2",
             "DDB_TABLE_NAME": Object {
-              "Ref": "RSTaskRSInvokerDynamoTableC8B3355B",
+              "Ref": "RSTaskRSInvokerDDBDynamoTable7CC77285",
             },
             "LOG_LEVEL": "INFO",
             "TTL": "1",
@@ -1339,19 +1274,16 @@ Object {
         "ReservedConcurrentExecutions": 1,
         "Role": Object {
           "Fn::GetAtt": Array [
-            "RSTaskUser2RSInvokerLambdaFunctionServiceRole598B3E0A",
+            "RSTaskUser2RSInvokerServiceRole539CF0C8",
             "Arn",
           ],
         },
         "Runtime": "python3.8",
         "Timeout": 29,
-        "TracingConfig": Object {
-          "Mode": "Active",
-        },
       },
       "Type": "AWS::Lambda::Function",
     },
-    "RSTaskUser2RSInvokerLambdaFunctionLogRetentionD6324221": Object {
+    "RSTaskUser2RSInvokerLogRetention039F68B6": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -1359,7 +1291,7 @@ Object {
             Array [
               "/aws/lambda/",
               Object {
-                "Ref": "RSTaskUser2RSInvokerLambdaFunction938C96BE",
+                "Ref": "RSTaskUser2RSInvoker2FB5B7CD",
               },
             ],
           ],
@@ -1374,7 +1306,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "RSTaskUser2RSInvokerLambdaFunctionServiceRole598B3E0A": Object {
+    "RSTaskUser2RSInvokerServiceRole539CF0C8": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -1388,69 +1320,27 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "Policies": Array [
+        "ManagedPolicyArns": Array [
           Object {
-            "PolicyDocument": Object {
-              "Statement": Array [
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
                 Object {
-                  "Action": Array [
-                    "logs:CreateLogGroup",
-                    "logs:CreateLogStream",
-                    "logs:PutLogEvents",
-                  ],
-                  "Effect": "Allow",
-                  "Resource": Object {
-                    "Fn::Join": Array [
-                      "",
-                      Array [
-                        "arn:",
-                        Object {
-                          "Ref": "AWS::Partition",
-                        },
-                        ":logs:",
-                        Object {
-                          "Ref": "AWS::Region",
-                        },
-                        ":",
-                        Object {
-                          "Ref": "AWS::AccountId",
-                        },
-                        ":log-group:/aws/lambda/*",
-                      ],
-                    ],
-                  },
+                  "Ref": "AWS::Partition",
                 },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
               ],
-              "Version": "2012-10-17",
-            },
-            "PolicyName": "LambdaFunctionServiceRolePolicy",
+            ],
           },
         ],
       },
       "Type": "AWS::IAM::Role",
     },
-    "RSTaskUser2RSInvokerLambdaFunctionServiceRoleDefaultPolicyE1A068BC": Object {
-      "Metadata": Object {
-        "cfn_nag": Object {
-          "rules_to_suppress": Array [
-            Object {
-              "id": "W12",
-              "reason": "Lambda needs the following minimum required permissions to send trace data to X-Ray and access ENIs in a VPC.",
-            },
-          ],
-        },
-      },
+    "RSTaskUser2RSInvokerServiceRoleDefaultPolicyFACAC6A3": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
-            Object {
-              "Action": Array [
-                "xray:PutTraceSegments",
-                "xray:PutTelemetryRecords",
-              ],
-              "Effect": "Allow",
-              "Resource": "*",
-            },
             Object {
               "Action": Array [
                 "dynamodb:BatchGetItem",
@@ -1469,7 +1359,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "RSTaskRSInvokerDynamoTableC8B3355B",
+                    "RSTaskRSInvokerDDBDynamoTable7CC77285",
                     "Arn",
                   ],
                 },
@@ -1520,10 +1410,10 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "RSTaskUser2RSInvokerLambdaFunctionServiceRoleDefaultPolicyE1A068BC",
+        "PolicyName": "RSTaskUser2RSInvokerServiceRoleDefaultPolicyFACAC6A3",
         "Roles": Array [
           Object {
-            "Ref": "RSTaskUser2RSInvokerLambdaFunctionServiceRole598B3E0A",
+            "Ref": "RSTaskUser2RSInvokerServiceRole539CF0C8",
           },
         ],
       },
@@ -1546,14 +1436,14 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskUser2RSInvokerLambdaFunction938C96BE",
+                  "RSTaskUser2RSInvoker2FB5B7CD",
                   "Arn",
                 ],
               },
               "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select get_date()\\"}}},\\"testFailed\\":{\\"Type\\":\\"Fail\\"},\\"simpleFailureDescribeTaskProcedure\\":{\\"Next\\":\\"testSucceeded\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"Resource\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskUser2RSInvokerLambdaFunction938C96BE",
+                  "RSTaskUser2RSInvoker2FB5B7CD",
                   "Arn",
                 ],
               },
@@ -1607,7 +1497,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskUser2RSInvokerLambdaFunction938C96BE",
+                  "RSTaskUser2RSInvoker2FB5B7CD",
                   "Arn",
                 ],
               },
@@ -1641,14 +1531,14 @@ Object {
               ":states:::lambda:invoke.waitForTaskToken\\",\\"Parameters\\":{\\"FunctionName\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
               "\\",\\"Payload\\":{\\"taskToken.$\\":\\"$$.Task.Token\\",\\"executionArn.$\\":\\"$$.Execution.Id\\",\\"sqlStatement\\":\\"select getdate()\\"}}},\\"simpleSuccessfullRsTaskGetResult\\":{\\"Next\\":\\"Succeed1\\",\\"Retry\\":[{\\"ErrorEquals\\":[\\"Lambda.ServiceException\\",\\"Lambda.AWSLambdaException\\",\\"Lambda.SdkClientException\\"],\\"IntervalSeconds\\":2,\\"MaxAttempts\\":6,\\"BackoffRate\\":2},{\\"ErrorEquals\\":[\\"Lambda.TooManyRequestsException\\"],\\"IntervalSeconds\\":1,\\"MaxAttempts\\":10,\\"BackoffRate\\":1.5}],\\"Type\\":\\"Task\\",\\"HeartbeatSeconds\\":3600,\\"ResultPath\\":\\"$.executionResult\\",\\"Resource\\":\\"",
               Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },
@@ -1702,7 +1592,7 @@ Object {
               "Effect": "Allow",
               "Resource": Object {
                 "Fn::GetAtt": Array [
-                  "RSTaskRSInvokerLambdaFunction76AA46C6",
+                  "RSTaskRSInvoker99B25223",
                   "Arn",
                 ],
               },

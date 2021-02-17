@@ -48,9 +48,8 @@ new SfnRedshiftTasker(scope: Construct, id: string, props: SfnRedshiftTaskerProp
   * **encryptionKeyProps** (<code>[KeyProps](#aws-cdk-aws-kms-keyprops)</code>)  Optional user-provided props to override the default props for the encryption key. __*Default*__: Default props are used.
   * **existingQueueObj** (<code>[Queue](#aws-cdk-aws-sqs-queue)</code>)  Existing instance of SQS queue object, if this is set then the queueProps is ignored. __*Default*__: None
   * **existingTableObj** (<code>[Table](#aws-cdk-aws-dynamodb-table)</code>)  Existing instance of DynamoDB table object, If this is set then the dynamoTableProps is ignored. __*Default*__: None
-  * **logLevel** (<code>string</code>)  Optional log level to be used for Lambda functions. __*Default*__: INFO
+  * **logLevel** (<code>string</code>)  Optional user provided props to override the shared layer. __*Default*__: None
   * **maxReceiveCount** (<code>number</code>)  The number of times a message can be unsuccessfully dequeued before being moved to the dead-letter queue. __*Default*__: required field if deployDeadLetterQueue=true.
-  * **pythonLayerVersionProps** (<code>[PythonLayerVersionProps](#aws-cdk-aws-lambda-python-pythonlayerversionprops)</code>)  Optional user provided props to override the shared layer. __*Default*__: None
   * **queueProps** (<code>[QueueProps](#aws-cdk-aws-sqs-queueprops)</code>)  User provided props to override the default props for the SQS queue. __*Default*__: Default props are used
   * **starterExistingLambdaObj** (<code>[Function](#aws-cdk-aws-lambda-function)</code>)  Existing instance of Lambda Function object that starts execution, if this is set then the lambdaFunctionProps is ignored. __*Default*__: None
   * **starterLambdaFunctionProps** (<code>[FunctionProps](#aws-cdk-aws-lambda-functionprops)</code>)  User provided props to override the default props for the Lambda function that starts execution. __*Default*__: Default props are used
@@ -105,9 +104,8 @@ Name | Type | Description
 **encryptionKeyProps**? | <code>[KeyProps](#aws-cdk-aws-kms-keyprops)</code> | Optional user-provided props to override the default props for the encryption key.<br/>__*Default*__: Default props are used.
 **existingQueueObj**? | <code>[Queue](#aws-cdk-aws-sqs-queue)</code> | Existing instance of SQS queue object, if this is set then the queueProps is ignored.<br/>__*Default*__: None
 **existingTableObj**? | <code>[Table](#aws-cdk-aws-dynamodb-table)</code> | Existing instance of DynamoDB table object, If this is set then the dynamoTableProps is ignored.<br/>__*Default*__: None
-**logLevel**? | <code>string</code> | Optional log level to be used for Lambda functions.<br/>__*Default*__: INFO
+**logLevel**? | <code>string</code> | Optional user provided props to override the shared layer.<br/>__*Default*__: None
 **maxReceiveCount**? | <code>number</code> | The number of times a message can be unsuccessfully dequeued before being moved to the dead-letter queue.<br/>__*Default*__: required field if deployDeadLetterQueue=true.
-**pythonLayerVersionProps**? | <code>[PythonLayerVersionProps](#aws-cdk-aws-lambda-python-pythonlayerversionprops)</code> | Optional user provided props to override the shared layer.<br/>__*Default*__: None
 **queueProps**? | <code>[QueueProps](#aws-cdk-aws-sqs-queueprops)</code> | User provided props to override the default props for the SQS queue.<br/>__*Default*__: Default props are used
 **starterExistingLambdaObj**? | <code>[Function](#aws-cdk-aws-lambda-function)</code> | Existing instance of Lambda Function object that starts execution, if this is set then the lambdaFunctionProps is ignored.<br/>__*Default*__: None
 **starterLambdaFunctionProps**? | <code>[FunctionProps](#aws-cdk-aws-lambda-functionprops)</code> | User provided props to override the default props for the Lambda function that starts execution.<br/>__*Default*__: Default props are used
