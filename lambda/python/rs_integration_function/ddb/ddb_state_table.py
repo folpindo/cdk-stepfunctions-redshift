@@ -10,13 +10,12 @@ import boto3
 from boto3.dynamodb.conditions import Key
 import os
 
-from rsif_shared.exceptions import ConfigurationError, PreviousExecutionNotFound, NoTrackedState
-from rsif_shared.statement_class import StatementName
-from rsif_shared.ddb import DDB_ID, DDB_TABLE_NAME, DDB_TTL, DDB_FINISHED_EVENT_DETAILS, DDB_INVOCATION_ID
-from rsif_shared.event_labels import TASK_TOKEN, SQL_STATEMENT, EXECUTION_ARN
-from rsif_shared.assertion import assert_env_set
-from rsif_shared.logger import logger, l_statement_name, l_response, l_finished_event_details, l_ttl, l_item, \
-    l_exception
+from exceptions import ConfigurationError, PreviousExecutionNotFound, NoTrackedState
+from statement_class import StatementName
+from ddb import DDB_ID, DDB_TABLE_NAME, DDB_TTL, DDB_FINISHED_EVENT_DETAILS, DDB_INVOCATION_ID
+from event_labels import TASK_TOKEN, SQL_STATEMENT, EXECUTION_ARN
+from assertion import assert_env_set
+from logger import logger, l_statement_name, l_response, l_finished_event_details, l_ttl, l_item, l_exception
 
 assert_env_set(DDB_TABLE_NAME)
 dynamodb = boto3.resource('dynamodb')

@@ -6,8 +6,8 @@ import os
 
 import boto3
 
-from rsif_shared.environment_labels import CLUSTER_IDENTIFIER, DATABASE, DB_USER
-from rsif_shared.logger import logger, l_id, l_next_token, l_statement_name, l_response
+from environment_labels import CLUSTER_IDENTIFIER, DATABASE, DB_USER
+from logger import logger, l_id, l_next_token, l_statement_name, l_response
 
 redshift_data_api = boto3.client('redshift-data')
 

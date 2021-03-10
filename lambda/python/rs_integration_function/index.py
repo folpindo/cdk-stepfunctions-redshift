@@ -6,21 +6,21 @@ import json
 import traceback
 
 from aws_lambda_powertools.utilities.batch import sqs_batch_processor
-from rsif_shared.ddb.ddb_state_table import DDBStateTable
-from rsif_shared.exceptions import ConcurrentExecution, InvalidRequest
-from rsif_shared.integration import sanitize_response
-from rsif_shared.logger import logger, l_sanitized_response, l_response, l_record, l_message, l_traceback, l_exception
-from rsif_shared.environment_labels import env_variable_labels
-from rsif_shared.event_labels import (
+from ddb.ddb_state_table import DDBStateTable
+from exceptions import ConcurrentExecution, InvalidRequest
+from integration import sanitize_response
+from logger import logger, l_sanitized_response, l_response, l_record, l_message, l_traceback, l_exception
+from environment_labels import env_variable_labels
+from event_labels import (
     TASK_TOKEN, EXECUTION_ARN, SQL_STATEMENT, STATEMENT_ID, ACTION, DESCRIBE_STATEMENT, GET_STATEMENT_RESULT,
     NEXT_TOKEN, CANCEL_STATEMENT, EXECUTE_SINGLETON_STATEMENT, EXECUTE_STATEMENT
 )
-from rsif_shared.assertion import assert_env_set
-from rsif_shared.redshift_data.api import describe_statement, \
+from assertion import assert_env_set
+from redshift_data.api import describe_statement, \
     get_statement_result, cancel_statement, get_statement_id_for_statement_name, execute_statement, \
     is_statement_in_active_state
-from rsif_shared.statement_class import StatementName
-from rsif_shared.step_function.api import StepFunctionAPI
+from statement_class import StatementName
+from step_function.api import StepFunctionAPI
 
 for env_variable_label in env_variable_labels:
     assert_env_set(env_variable_label)

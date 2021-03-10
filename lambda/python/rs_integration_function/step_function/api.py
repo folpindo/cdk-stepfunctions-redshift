@@ -3,7 +3,7 @@
 
 import boto3
 import json
-from rsif_shared.logger import logger, l_record, l_task_timed_out, l_task_token, l_item
+from logger import logger, l_record, l_task_timed_out, l_task_token, l_item
 
 QUERY_FINISHED = "FINISHED"
 QUERY_FAILED = "FAILED"

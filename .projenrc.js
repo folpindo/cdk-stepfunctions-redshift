@@ -33,6 +33,7 @@ const project = new AwsCdkConstructLibrary({
     '@aws-solutions-constructs/aws-events-rule-sqs',
     '@aws-solutions-constructs/aws-sqs-lambda',
     '@aws-solutions-constructs/aws-lambda-dynamodb',
+    '@aws-cdk/aws-sam',
   ],
   deps: ['properties-reader'],
   bundledDeps: ['properties-reader'],
