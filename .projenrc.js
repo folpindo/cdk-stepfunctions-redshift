@@ -48,6 +48,9 @@ const project = new AwsCdkConstructLibrary({
     '\nDescription of changes:',
     '\nBy submitting this pull request, I confirm that you can use, modify, copy, and redistribute this contribution, under the terms of your choice.',
   ],
+  dependabotOptions: {
+    scheduleInterval: 'weekly',
+  },
 });
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'yarn-error.log', '**/.idea', 'package-lock.json'];
