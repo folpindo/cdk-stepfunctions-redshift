@@ -151,7 +151,12 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {},
+    "targets": {
+      "python": {
+        "distName": "cdk-stepfunctions-redshift",
+        "module": "cdk_stepfunctions_redshift"
+      }
+    },
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"
