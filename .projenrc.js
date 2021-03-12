@@ -50,6 +50,7 @@ const project = new AwsCdkConstructLibrary({
   ],
   dependabotOptions: {
     scheduleInterval: 'weekly',
+    autoMerge: true,
   },
   publishToPypi: {
     module: 'cdk_stepfunctions_redshift',
