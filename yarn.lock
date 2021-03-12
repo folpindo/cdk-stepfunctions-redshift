@@ -1613,12 +1613,12 @@
     "@types/yargs-parser" "*"
 
 "@typescript-eslint/eslint-plugin@^4.3.0":
-  version "4.14.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.14.1.tgz#22dd301ce228aaab3416b14ead10b1db3e7d3180"
-  integrity sha512-5JriGbYhtqMS1kRcZTQxndz1lKMwwEXKbwZbkUZNnp6MJX0+OVXnG0kOlBZP4LUAxEyzu3cs+EXd/97MJXsGfw==
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.17.0.tgz#6f856eca4e6a52ce9cf127dfd349096ad936aa2d"
+  integrity sha512-/fKFDcoHg8oNan39IKFOb5WmV7oWhQe1K6CDaAVfJaNWEhmfqlA24g+u1lqU5bMH7zuNasfMId4LaYWC5ijRLw==
   dependencies:
-    "@typescript-eslint/experimental-utils" "4.14.1"
-    "@typescript-eslint/scope-manager" "4.14.1"
+    "@typescript-eslint/experimental-utils" "4.17.0"
+    "@typescript-eslint/scope-manager" "4.17.0"
     debug "^4.1.1"
     functional-red-black-tree "^1.0.1"
     lodash "^4.17.15"
@@ -1626,15 +1626,15 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@4.14.1":
-  version "4.14.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.14.1.tgz#a5c945cb24dabb96747180e1cfc8487f8066f471"
-  integrity sha512-2CuHWOJwvpw0LofbyG5gvYjEyoJeSvVH2PnfUQSn0KQr4v8Dql2pr43ohmx4fdPQ/eVoTSFjTi/bsGEXl/zUUQ==
+"@typescript-eslint/experimental-utils@4.17.0":
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.17.0.tgz#762c44aaa1a6a3c05b6d63a8648fb89b89f84c80"
+  integrity sha512-ZR2NIUbnIBj+LGqCFGQ9yk2EBQrpVVFOh9/Kd0Lm6gLpSAcCuLLe5lUCibKGCqyH9HPwYC0GIJce2O1i8VYmWA==
   dependencies:
     "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/scope-manager" "4.14.1"
-    "@typescript-eslint/types" "4.14.1"
-    "@typescript-eslint/typescript-estree" "4.14.1"
+    "@typescript-eslint/scope-manager" "4.17.0"
+    "@typescript-eslint/types" "4.17.0"
+    "@typescript-eslint/typescript-estree" "4.17.0"
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
