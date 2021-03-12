@@ -62,7 +62,7 @@ export class IntegTesting {
         logLevel: 'DEBUG',
       },
     );
-    //Deploying separate function to allow access to a 3rd user without duplicating infra.
+    //Deploying separate function to allow access to another user without duplicating infra or powertools layer.
     let rs_task_helper2 = new SfnRedshiftTasker(
       stack, 'RSTaskUser2', {
         redshiftTargetProps: {
@@ -72,6 +72,7 @@ export class IntegTesting {
         },
         existingTableObj: rs_task_helper.trackingTable,
         createCallbackInfra: false,
+        powertoolsArn: rs_task_helper.powertoolsArn,
       },
     );
 

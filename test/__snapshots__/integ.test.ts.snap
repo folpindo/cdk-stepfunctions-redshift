@@ -1284,15 +1284,6 @@ Object {
       },
       "Type": "AWS::Lambda::EventSourceMapping",
     },
-    "RSTaskUser2Powertools5B681EC6": Object {
-      "Properties": Object {
-        "Location": Object {
-          "ApplicationId": "arn:aws:serverlessrepo:eu-west-1:057560766410:applications/aws-lambda-powertools-python-layer",
-          "SemanticVersion": "1.11.0",
-        },
-      },
-      "Type": "AWS::Serverless::Application",
-    },
     "RSTaskUser2RSInvokerLambdaFunction938C96BE": Object {
       "DependsOn": Array [
         "RSTaskUser2RSInvokerLambdaFunctionServiceRoleDefaultPolicyE1A068BC",
@@ -1365,7 +1356,7 @@ Object {
         "Layers": Array [
           Object {
             "Fn::GetAtt": Array [
-              "RSTaskUser2Powertools5B681EC6",
+              "RSTaskPowertools84336D63",
               "Outputs.LayerVersionArn",
             ],
           },
@@ -2418,8 +2409,6 @@ Object {
       "Type": "AWS::EC2::Subnet",
     },
   },
-  "Transform": Array [
-    "AWS::Serverless-2016-10-31",
-  ],
+  "Transform": "AWS::Serverless-2016-10-31",
 }
 `;

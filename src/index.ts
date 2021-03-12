@@ -165,6 +165,14 @@ export interface SfnRedshiftTaskerProps {
    * @default - true
    */
   readonly createCallbackInfra?: boolean;
+
+  /**
+   * The ARN of a lambda layer containing the AWS Lambda powertools.
+   *
+   * @default - Not provided then an application will be created from the serverless application registry to get the layer. If you plan to create
+   * multiple SfnRedshiftTaskers then you can reuse the powertoolsArn from the first instance.
+   */
+  readonly powertoolsArn?: string;
 }
 
 /**
@@ -180,6 +188,11 @@ export class SfnRedshiftTasker extends cdk.Construct {
    * A state table that tracks the Redshift statements being executed.
    */
   public readonly trackingTable: dynamodb.Table;
+
+  /**
+   * The ARN of a layer hosting AWS Lambda powertools
+   */
+  public readonly powertoolsArn: string;
 
   /**
    * Creates the infrastructure to allow stepfunction tasks that execute SQL commands and await their completion.
@@ -217,13 +230,17 @@ export class SfnRedshiftTasker extends cdk.Construct {
     let DATABASE = getRsProcedureStarterEnvProp('DATABASE');
     let DB_USER = getRsProcedureStarterEnvProp('DB_USER');
 
-    let powertools = new sam.CfnApplication(this, 'Powertools', {
-      location: {
-        applicationId: 'arn:aws:serverlessrepo:eu-west-1:057560766410:applications/aws-lambda-powertools-python-layer',
-        semanticVersion: '1.11.0',
-      },
-    });
-    let powertoolsArn = powertools.getAtt('Outputs.LayerVersionArn');
+    if (props.powertoolsArn === undefined) {
+      let powertools = new sam.CfnApplication(this, 'Powertools', {
+        location: {
+          applicationId: 'arn:aws:serverlessrepo:eu-west-1:057560766410:applications/aws-lambda-powertools-python-layer',
+          semanticVersion: '1.11.0',
+        },
+      });
+      this.powertoolsArn = powertools.getAtt('Outputs.LayerVersionArn').toString();
+    } else {
+      this.powertoolsArn = props.powertoolsArn;
+    }
 
     let defaultDynamoTableProps = {
       partitionKey: { name: DDB_ID, type: dynamodb.AttributeType.STRING },
@@ -244,7 +261,7 @@ export class SfnRedshiftTasker extends cdk.Construct {
         [DDB_TTL]: '1', //Default time to live is 1 day.
         LOG_LEVEL: props.logLevel || 'INFO',
       },
-      layers: [lambda.LayerVersion.fromLayerVersionArn(this, 'powertoolsVersion', powertoolsArn.toString())],
+      layers: [lambda.LayerVersion.fromLayerVersionArn(this, 'powertoolsVersion', this.powertoolsArn)],
       logRetention: logs.RetentionDays.ONE_YEAR,
       timeout: cdk.Duration.seconds(29),
       reservedConcurrentExecutions: 1, // Limit to 1 concurrent execution to allow safe checking concurrent invocations

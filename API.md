@@ -50,6 +50,7 @@ new SfnRedshiftTasker(scope: Construct, id: string, props: SfnRedshiftTaskerProp
   * **existingTableObj** (<code>[Table](#aws-cdk-aws-dynamodb-table)</code>)  Existing instance of DynamoDB table object, If this is set then the dynamoTableProps is ignored. __*Default*__: None
   * **logLevel** (<code>string</code>)  Optional log level to be used for Lambda functions. __*Default*__: INFO
   * **maxReceiveCount** (<code>number</code>)  The number of times a message can be unsuccessfully dequeued before being moved to the dead-letter queue. __*Default*__: required field if deployDeadLetterQueue=true.
+  * **powertoolsArn** (<code>string</code>)  The ARN of a lambda layer containing the AWS Lambda powertools. __*Default*__: Not provided then an application will be created from the serverless application registry to get the layer. If you plan to create multiple SfnRedshiftTaskers then you can reuse the powertoolsArn from the first instance.
   * **pythonLayerVersionProps** (<code>[PythonLayerVersionProps](#aws-cdk-aws-lambda-python-pythonlayerversionprops)</code>)  Optional user provided props to override the shared layer. __*Default*__: None
   * **queueProps** (<code>[QueueProps](#aws-cdk-aws-sqs-queueprops)</code>)  User provided props to override the default props for the SQS queue. __*Default*__: Default props are used
   * **starterExistingLambdaObj** (<code>[Function](#aws-cdk-aws-lambda-function)</code>)  Existing instance of Lambda Function object that starts execution, if this is set then the lambdaFunctionProps is ignored. __*Default*__: None
@@ -64,6 +65,7 @@ new SfnRedshiftTasker(scope: Construct, id: string, props: SfnRedshiftTaskerProp
 Name | Type | Description 
 -----|------|-------------
 **lambdaFunction** | <code>[Function](#aws-cdk-aws-lambda-function)</code> | The Lambda function which can be used from a Step function task to invoke a SQL statement.
+**powertoolsArn** | <code>string</code> | The ARN of a layer hosting AWS Lambda powertools.
 **trackingTable** | <code>[Table](#aws-cdk-aws-dynamodb-table)</code> | A state table that tracks the Redshift statements being executed.
 
 
@@ -107,6 +109,7 @@ Name | Type | Description
 **existingTableObj**? | <code>[Table](#aws-cdk-aws-dynamodb-table)</code> | Existing instance of DynamoDB table object, If this is set then the dynamoTableProps is ignored.<br/>__*Default*__: None
 **logLevel**? | <code>string</code> | Optional log level to be used for Lambda functions.<br/>__*Default*__: INFO
 **maxReceiveCount**? | <code>number</code> | The number of times a message can be unsuccessfully dequeued before being moved to the dead-letter queue.<br/>__*Default*__: required field if deployDeadLetterQueue=true.
+**powertoolsArn**? | <code>string</code> | The ARN of a lambda layer containing the AWS Lambda powertools.<br/>__*Default*__: Not provided then an application will be created from the serverless application registry to get the layer. If you plan to create multiple SfnRedshiftTaskers then you can reuse the powertoolsArn from the first instance.
 **pythonLayerVersionProps**? | <code>[PythonLayerVersionProps](#aws-cdk-aws-lambda-python-pythonlayerversionprops)</code> | Optional user provided props to override the shared layer.<br/>__*Default*__: None
 **queueProps**? | <code>[QueueProps](#aws-cdk-aws-sqs-queueprops)</code> | User provided props to override the default props for the SQS queue.<br/>__*Default*__: Default props are used
 **starterExistingLambdaObj**? | <code>[Function](#aws-cdk-aws-lambda-function)</code> | Existing instance of Lambda Function object that starts execution, if this is set then the lambdaFunctionProps is ignored.<br/>__*Default*__: None
