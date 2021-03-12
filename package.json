@@ -107,7 +107,7 @@
   ],
   "main": "lib/index.js",
   "license": "UNLICENSED",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.ts?(x)",
