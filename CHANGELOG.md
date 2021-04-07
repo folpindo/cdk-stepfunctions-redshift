@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.85.0](https://github.com/aws-samples/cdk-stepfunctions-redshift/compare/v0.0.5...v1.85.0) (2021-04-07)
+
+
+### Features
+
+* Only set release workflow for release branch ([fa3727e](https://github.com/aws-samples/cdk-stepfunctions-redshift/commit/fa3727e8a830a72b4d2b34c9ff1dac5e69a3a6c3))
+* Set CDK version to 1.85.0 ([756e79d](https://github.com/aws-samples/cdk-stepfunctions-redshift/commit/756e79d462607122ebf9d0dee212f5c222f7262f))
+
 ### [0.0.5](https://github.com/aws-samples/cdk-stepfunctions-redshift/compare/v0.0.4...v0.0.5) (2021-03-16)
 
 ### [0.0.4](https://github.com/aws-samples/cdk-stepfunctions-redshift/compare/v0.0.3...v0.0.4) (2021-03-12)
