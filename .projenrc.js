@@ -70,7 +70,6 @@ cdkVerMatch.exec(' ' +
 
 releaseWorkflow = project.github.addWorkflow('releaseWorkflow');
 releaseWorkflow.on({
-  push: { branches: ['release'] },
   workflow_dispatch: {},
 });
 releaseWorkflow.addJobs({
