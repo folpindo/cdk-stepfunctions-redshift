@@ -108,13 +108,13 @@
     "release": {
       "name": "release",
       "category": "20.release",
-      "description": "Bumps version & push to main",
+      "description": "Bumps version & push to release",
       "steps": [
         {
           "spawn": "bump"
         },
         {
-          "exec": "git push --follow-tags origin main"
+          "exec": "git push --follow-tags origin release"
         }
       ],
       "condition": "! git log --oneline -1 | grep -q \"chore(release):\""
@@ -201,6 +201,15 @@
           "exec": "jsii-diff npm:$(node -p \"require('./package.json').name\") -k --ignore-file .compatignore || (echo \"\nUNEXPECTED BREAKING CHANGES: add keys such as 'removed:constructs.Node.of' to .compatignore to skip.\n\" && exit 1)"
         }
       ]
+    },
+    "cdk-ver-match": {
+      "name": "cdk-ver-match",
+      "steps": [
+        {
+          "exec": "   grep '\"version\": \"'\"$(grep \"^const AWS_CDK_VERSION\" .projenrc.js | grep -o \"[0-9]*\\.[0-9]*\\.\")[0-9][0-9]*\"'\"' version.json 2>/dev/null  || standard-version --release-as \"$(grep \"^const AWS_CDK_VERSION\" .projenrc.js | grep -o \"[0-9]*\\.[0-9]*\\.[0-9]*\")\""
+        }
+      ],
+      "condition": "grep \"^const AWS_CDK_VERSION =\" .projenrc.js | wc -l | grep 1 >/dev/null"
     }
   },
   "env": {
