@@ -1,0 +1,12 @@
+name: Auto-approve Dependabot
+on:
+  pull_request_target
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: hmarr/auto-approve-action@1d443ad91ed9c2d28ee46d21a74737f80ea64189
+      if: github.event.pull_request.user.login == 'dependabot[bot]'
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
