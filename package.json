@@ -6,24 +6,24 @@
     "url": "https://github.com/aws-samples/cdk-stepfunctions-redshift.git"
   },
   "scripts": {
-    "projen": "npx projen",
-    "start": "npx projen start",
     "clobber": "npx projen clobber",
     "compile": "npx projen compile",
     "test:compile": "npx projen test:compile",
     "test": "npx projen test",
     "build": "npx projen build",
-    "bump": "npx projen bump",
-    "release": "npx projen release",
     "test:watch": "npx projen test:watch",
     "test:update": "npx projen test:update",
-    "projen:upgrade": "npx projen projen:upgrade",
+    "upgrade-dependencies": "npx projen upgrade-dependencies",
+    "upgrade-projen": "npx projen upgrade-projen",
+    "default": "npx projen default",
     "watch": "npx projen watch",
     "package": "npx projen package",
     "eslint": "npx projen eslint",
-    "docgen": "npx projen docgen",
     "compat": "npx projen compat",
-    "cdk-ver-match": "npx projen cdk-ver-match"
+    "docgen": "npx projen docgen",
+    "cdk-ver-match": "npx projen cdk-ver-match",
+    "projen": "npx projen",
+    "start": "npx projen start"
   },
   "author": {
     "name": "Peter Van Bouwel",
@@ -47,10 +47,9 @@
     "jsii-docgen": "^1.8.31",
     "jsii-pacmak": "^1.18.0",
     "json-schema": "^0.3.0",
-    "projen": "^0.16.42",
-    "standard-version": "^9",
+    "npm-check-updates": "^11",
+    "projen": "^0.22.12",
     "ts-jest": "^26.5.0",
-    "typedoc": "^0.20.19",
     "typescript": "^3.9.5"
   },
   "peerDependencies": {
@@ -108,7 +107,7 @@
   ],
   "main": "lib/index.js",
   "license": "UNLICENSED",
-  "version": "1.85.0",
+  "version": "0.0.0",
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.ts?(x)",

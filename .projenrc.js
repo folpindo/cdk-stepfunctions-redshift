@@ -37,7 +37,6 @@ const project = new AwsCdkConstructLibrary({
   ],
   deps: ['properties-reader'],
   bundledDeps: ['properties-reader'],
-  docgen: true,
   eslint: true,
   keywords: ['cdk', 'redshift', 'stepfunction', 'orchestration'],
   licensed: false,
@@ -74,6 +73,7 @@ releaseWorkflow.on({
 });
 releaseWorkflow.addJobs({
   build: {
+    'permissions': { contents: 'write' },
     'runs-on': 'ubuntu-latest',
     'env': {
       CI: 'true',
@@ -146,6 +146,7 @@ releaseWorkflow.addJobs({
     },
   },
   release_npm: {
+    'permissions': { contents: 'read' },
     'name': 'Release to NPM',
     'needs': 'build',
     'runs-on': 'ubuntu-latest',
@@ -173,6 +174,7 @@ releaseWorkflow.addJobs({
     ],
   },
   release_pypi: {
+    'permissions': { contents: 'read' },
     'name': 'Release to PyPi',
     'needs': 'build',
     'runs-on': 'ubuntu-latest',

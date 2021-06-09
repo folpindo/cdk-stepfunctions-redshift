@@ -5,7 +5,8 @@ on:
   workflow_dispatch: {}
 jobs:
   build:
-    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       CI: "true"
     steps:
@@ -49,9 +50,8 @@ jobs:
   release_npm:
     name: Release to NPM
     needs: build
-    runs-on: ubuntu-latest
-    container:
-      image: jsii/superchain
+    permissions:
+      contents: read
     steps:
       - name: Download build artifacts
         uses: actions/download-artifact@v2
@@ -64,12 +64,13 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_DIST_TAG: latest
           NPM_REGISTRY: registry.npmjs.org
+    container:
+      image: jsii/superchain
   release_pypi:
     name: Release to PyPi
     needs: build
-    runs-on: ubuntu-latest
-    container:
-      image: jsii/superchain
+    permissions:
+      contents: read
     steps:
       - name: Download build artifacts
         uses: actions/download-artifact@v2
@@ -81,3 +82,5 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+    container:
+      image: jsii/superchain
