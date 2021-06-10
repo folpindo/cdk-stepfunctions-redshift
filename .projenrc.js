@@ -74,7 +74,7 @@ releaseWorkflow.on({
 releaseWorkflow.addJobs({
   build: {
     'permissions': { contents: 'write' },
-    'runs-on': 'ubuntu-latest',
+    'runsOn': 'ubuntu-latest',
     'env': {
       CI: 'true',
     },
@@ -149,7 +149,7 @@ releaseWorkflow.addJobs({
     'permissions': { contents: 'read' },
     'name': 'Release to NPM',
     'needs': 'build',
-    'runs-on': 'ubuntu-latest',
+    'runsOn': 'ubuntu-latest',
     'container': {
       image: 'jsii/superchain',
     },
@@ -177,7 +177,7 @@ releaseWorkflow.addJobs({
     'permissions': { contents: 'read' },
     'name': 'Release to PyPi',
     'needs': 'build',
-    'runs-on': 'ubuntu-latest',
+    'runsOn': 'ubuntu-latest',
     'container': {
       image: 'jsii/superchain',
     },
