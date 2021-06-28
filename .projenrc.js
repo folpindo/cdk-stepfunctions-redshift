@@ -73,12 +73,12 @@ releaseWorkflow.on({
 });
 releaseWorkflow.addJobs({
   build: {
-    'permissions': { contents: 'write' },
-    'runsOn': 'ubuntu-latest',
-    'env': {
+    permissions: { contents: 'write' },
+    runsOn: 'ubuntu-latest',
+    env: {
       CI: 'true',
     },
-    'steps': [
+    steps: [
       {
         name: 'Checkout',
         uses: 'actions/checkout@v2',
@@ -141,19 +141,19 @@ releaseWorkflow.addJobs({
         },
       },
     ],
-    'container': {
+    container: {
       image: 'jsii/superchain',
     },
   },
   release_npm: {
-    'permissions': { contents: 'read' },
-    'name': 'Release to NPM',
-    'needs': 'build',
-    'runsOn': 'ubuntu-latest',
-    'container': {
+    permissions: { contents: 'read' },
+    name: 'Release to NPM',
+    needs: 'build',
+    runsOn: 'ubuntu-latest',
+    container: {
       image: 'jsii/superchain',
     },
-    'steps': [
+    steps: [
       {
         name: 'Download build artifacts',
         uses: 'actions/download-artifact@v2',
@@ -174,14 +174,14 @@ releaseWorkflow.addJobs({
     ],
   },
   release_pypi: {
-    'permissions': { contents: 'read' },
-    'name': 'Release to PyPi',
-    'needs': 'build',
-    'runsOn': 'ubuntu-latest',
-    'container': {
+    permissions: { contents: 'read' },
+    name: 'Release to PyPi',
+    needs: 'build',
+    runsOn: 'ubuntu-latest',
+    container: {
       image: 'jsii/superchain',
     },
-    'steps': [
+    steps: [
       {
         name: 'Download build artifacts',
         uses: 'actions/download-artifact@v2',
