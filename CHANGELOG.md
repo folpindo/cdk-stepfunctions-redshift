@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.86.0](https://github.com/aws-samples/cdk-stepfunctions-redshift/compare/v1.85.0...v1.86.0) (2021-06-28)
+
+
+### Features
+
+* **deps:** Upgrade projen ([49c30fa](https://github.com/aws-samples/cdk-stepfunctions-redshift/commit/49c30fafbb938096e4dc9ef137a8b7fdb2c04faa))
+* Add auto-approve for dependabot ([591fcf8](https://github.com/aws-samples/cdk-stepfunctions-redshift/commit/591fcf8d89745d239c48e5d57fa8f0eca8b4fea8))
+
+
+### Bug Fixes
+
+* Only trigger release workflow manually ([643297c](https://github.com/aws-samples/cdk-stepfunctions-redshift/commit/643297c0f0025ad21d1f824c6f09f75e0783e3ea))
+
 ## [1.85.0](https://github.com/aws-samples/cdk-stepfunctions-redshift/compare/v0.0.5...v1.85.0) (2021-04-07)
 
 
