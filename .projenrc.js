@@ -107,8 +107,8 @@ releaseWorkflow.addJobs({
         run: 'npx projen cdk-ver-match',
       },
       {
-        name: 'Bump to next version',
-        run: 'npx projen bump',
+        name: 'Make sure we are releasing',
+        run: 'git log | head -n 5 | tail -n 1 | grep "chore(release)"',
       },
       {
         name: 'Build',
