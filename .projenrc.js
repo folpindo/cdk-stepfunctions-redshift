@@ -54,7 +54,7 @@ const project = new AwsCdkConstructLibrary({
   publishToPypi: {
     module: 'cdk_stepfunctions_redshift',
     distName: PROJECT_NAME,
-  }
+  },
 });
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'yarn-error.log', '**/.idea', 'package-lock.json'];
