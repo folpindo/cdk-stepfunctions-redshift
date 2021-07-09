@@ -16,6 +16,13 @@ function get_next_patch_version_from_next() {
 
 git checkout main
 
+if ! git status | grep "nothing to commit, working tree clean"
+then
+  git status
+  echo -e "\n\nThis script is meant for bumping CDK dependencies but working directory is not clean. Aborting"
+  exit 4
+fi
+
 # Below variable will be 0 if they are not available
 if curl -s "https://github.com/awslabs/aws-solutions-constructs/releases/tag/v${NEXT_VERSION}" | grep "^Not Found" &>/dev/null
 then
@@ -43,6 +50,9 @@ then
   sed -i.bak "s/${CURRENT_VERSION}/${NEXT_VERSION}/" version.json
   echo "Re-synthesize using projen"
   npx projen
+
+  git add . && git commit -m "feat(deps) upgrade CDK to ${NEXT_VERSION}"
+
   echo "Tag version correctly"
   git tag -a "v${NEXT_VERSION}" -m "chore(release): ${NEXT_VERSION}"
 
