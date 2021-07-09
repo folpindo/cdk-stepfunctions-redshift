@@ -11,6 +11,7 @@
 .eslintcache
 .jsii
 .nyc_output
+.projenrc.js.bak
 .yarn-integrity
 /.changelog.tmp.md
 /coverage
@@ -33,6 +34,7 @@ package-lock.json
 pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 tsconfig.json
+version.json.bak
 yarn-debug.log*
 yarn-error.log
 yarn-error.log*

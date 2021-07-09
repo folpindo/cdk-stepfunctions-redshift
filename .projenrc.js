@@ -57,7 +57,7 @@ const project = new AwsCdkConstructLibrary({
   },
 });
 
-const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'yarn-error.log', '**/.idea', 'package-lock.json'];
+const common_exclude = ['cdk.out', 'cdk.context.json', 'docker-compose.yml', 'yarn-error.log', '**/.idea', 'package-lock.json', '.projenrc.js.bak', 'version.json.bak'];
 project.npmignore.exclude(...common_exclude, '/codebase');
 project.gitignore.exclude(...common_exclude);
 const isCdkVersionDefinedAsExpected = 'grep "^const AWS_CDK_VERSION =" .projenrc.js | wc -l | grep 1 >/dev/null';
