@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.88.0](https://github.com/aws-samples/cdk-stepfunctions-redshift/compare/v1.87.0...v1.88.0) (2021-07-09)
+
 ## [1.87.0](https://github.com/aws-samples/cdk-stepfunctions-redshift/compare/v1.85.0...v1.87.0) (2021-06-28)
 
 
