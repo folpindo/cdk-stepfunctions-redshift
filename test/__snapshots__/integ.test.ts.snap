@@ -748,10 +748,12 @@ Object {
       "Type": "AWS::Events::Rule",
     },
     "RSTaskQueryFinisheddeadLetterQueueA177B510": Object {
+      "DeletionPolicy": "Delete",
       "Properties": Object {
         "KmsMasterKeyId": "alias/aws/sqs",
       },
       "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
     },
     "RSTaskQueryFinisheddeadLetterQueuePolicy15B00B1A": Object {
       "Properties": Object {
@@ -823,6 +825,7 @@ Object {
       "Type": "AWS::SQS::QueuePolicy",
     },
     "RSTaskQueryFinishedqueue01F5A7DD": Object {
+      "DeletionPolicy": "Delete",
       "Properties": Object {
         "KmsMasterKeyId": Object {
           "Fn::GetAtt": Array [
@@ -841,6 +844,7 @@ Object {
         },
       },
       "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
     },
     "RSTaskQueryFinishedqueuePolicy2FCA4CD4": Object {
       "Properties": Object {
