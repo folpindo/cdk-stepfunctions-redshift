@@ -26,10 +26,11 @@ else
   while ! curl -s "https://github.com/awslabs/aws-solutions-constructs/releases/tag/v${NEXT_PATCH_VERSION}" | grep "^Not Found" &>/dev/null
   do
     NEXT_VERSION="${NEXT_PATCH_VERSION}"
+    NEXT_PATCH_VERSION=$(get_next_patch_version_from_next)
   done
 fi
 
-echo "Current version is ${CURRENT_VERSION} so bump will go to ${NEXT_VERSION}. Proceed?<y[es]/N[o]>"
+echo "Current version is ${CURRENT_VERSION}, bump will go to ${NEXT_VERSION}. Proceed?<y[es]/N[o]>"
 read -r PROCEED
 PROCEED_UPPER=$(echo "${PROCEED}" | tr '[:lower:]' '[:upper:]')
 
@@ -47,7 +48,7 @@ then
 
   echo "After validation run:"
   echo " git push --follow-tags origin main"
-  echo " git checkout release && git push --follow-tags origin release && git checkout main"
+  echo " git checkout release && git merge main &&  git push --follow-tags origin release && git checkout main"
 else
   echo "Abort"
   exit 1
