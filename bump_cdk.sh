@@ -56,6 +56,12 @@ then
   echo "Tag version correctly"
   git tag -a "v${NEXT_VERSION}" -m "chore(release): ${NEXT_VERSION}"
 
+  echo "Do a compile run to run local tests"
+  yarn compile
+
+  echo "Output git status to easily validate that compile run doesn't introduce changes (e.g. snapshot changes)"
+  git status
+
   echo "After validation run:"
   echo " git push --follow-tags origin main"
   echo " git checkout release && git merge main &&  git push --follow-tags origin release && git checkout main"
