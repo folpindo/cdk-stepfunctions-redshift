@@ -268,11 +268,25 @@ export class SfnRedshiftTasker extends cdk.Construct {
     };
     const existingTableErr = 'Must pass existing helper table via "existingTableObj" if createCallBackInfra is set to false';
     assert(props.createCallbackInfra || props.createCallbackInfra === undefined || props.existingTableObj !== undefined, existingTableErr);
+
+    // When an existing lambda function is provided re-use it otherwise create one using the provided properties
+    let lambdaDetails;
+    if (props.starterExistingLambdaObj === undefined) {
+      lambdaDetails = { lambdaFunctionProps: { ...defaultLambdaFunctionProps, ...props.starterLambdaFunctionProps } };
+    } else {
+      lambdaDetails = { existingLambdaObj: props.starterExistingLambdaObj };
+    }
+
+    // When an existing DDB table is provided re-use it otherwise create one using the provided properties
+    let ddbDetails;
+    if (props.existingTableObj === undefined) {
+      ddbDetails = { dynamoTableProps: { ...defaultDynamoTableProps, ...props.dynamoTableProps } };
+    } else {
+      ddbDetails = { existingTableObj: props.existingTableObj };
+    }
     let lambda_ddb = new LambdaToDynamoDB(this, 'RSInvoker', {
-      existingLambdaObj: props.starterExistingLambdaObj,
-      lambdaFunctionProps: { ...defaultLambdaFunctionProps, ...props.starterLambdaFunctionProps },
-      dynamoTableProps: { ...defaultDynamoTableProps, ...props.dynamoTableProps },
-      existingTableObj: props.existingTableObj,
+      ...lambdaDetails,
+      ...ddbDetails,
       tablePermissions: props.tablePermissions || 'ReadWrite',
     });
     this.lambdaFunction = lambda_ddb.lambdaFunction;
@@ -317,14 +331,19 @@ export class SfnRedshiftTasker extends cdk.Construct {
         resources: ['*'],
       });
 
-      let existingCompleterLambdaObj = props.completerExistingLambdaObj;
+      let completerLambdaDetails;
       if (props.completerExistingLambdaObj === undefined && props.completerLambdaFunctionProps === undefined ) {
-        //We default on re-using the function that starts execution.
-        existingCompleterLambdaObj = this.lambdaFunction;
+        //We fall back on re-using the function that starts execution.
+        completerLambdaDetails = { existingLambdaObj: this.lambdaFunction };
+      } else {
+        if (props.completerExistingLambdaObj === undefined) {
+          completerLambdaDetails = { lambdaFunctionProps: { ...defaultLambdaFunctionProps, ...props.completerLambdaFunctionProps } };
+        } else {
+          completerLambdaDetails = { existingLambdaObj: props.completerExistingLambdaObj };
+        }
       }
       let completerIntegration = new LambdaToDynamoDB(this, 'Completer', {
-        existingLambdaObj: existingCompleterLambdaObj,
-        lambdaFunctionProps: { ...defaultLambdaFunctionProps, ...props.completerLambdaFunctionProps },
+        ...completerLambdaDetails,
         existingTableObj: this.trackingTable,
       });
 
